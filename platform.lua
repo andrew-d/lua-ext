@@ -10,9 +10,18 @@ local package = package
 local string = string
 local io = io
 local os = os
+local version = _VERSION
+
+-- Note that we define this ahead of the below, since we need to know the
+-- version of Lua to figure out whether we need to use setfenv.
+local _lua_version = string.sub(version, 5)
 
 -- No more external access after this point.
-setfenv(1, P)
+if _lua_version == '5.2' then
+    _ENV = P
+else
+    setfenv(1, P)
+end
 
 
 -- Use undocumented package.config to get directory and path separator.
@@ -27,14 +36,10 @@ const = {
 }
 
 
-local _is_windows = const.dirsep == '\\'
 
 -------------------------------------------------------------------------------
--- Returns whether the current execution platform is Windows.
--- @return true if execution platform is Windows
-function is_windows()
-    return _is_windows
-end
+-- A constant indicating whether the current execution platform is Windows.
+is_windows = const.dirsep == '\\'
 
 
 -------------------------------------------------------------------------------
@@ -107,6 +112,11 @@ function architecture()
         return _other_mapping[arch] or arch
     end
 end
+
+
+-------------------------------------------------------------------------------
+-- The current version of Lua, as a string.
+lua_version = _lua_version
 
 
 return P
