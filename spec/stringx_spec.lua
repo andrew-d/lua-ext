@@ -19,23 +19,33 @@ describe("String extension library", function()
 
     describe('shorten', function()
         it('should not change short strings', function()
-            assert.are.equals(sx.shorten('foo', 10), 'foo')
+            assert.are.equal(sx.shorten('foo', 10), 'foo')
         end)
 
         it('should shorten to just dots', function()
-            assert.are.equals(sx.shorten('bar', 0), '')
-            assert.are.equals(sx.shorten('bar', 1), '.')
-            assert.are.equals(sx.shorten('bar', 2), '..')
+            assert.are.equal(sx.shorten('bar', 0), '')
+            assert.are.equal(sx.shorten('bar', 1), '.')
+            assert.are.equal(sx.shorten('bar', 2), '..')
         end)
 
         it('should shorten long strings', function()
-            assert.are.equals(sx.shorten('foobar123', 6), 'foo...')
+            assert.are.equal(sx.shorten('foobar123', 6), 'foo...')
         end)
 
         it('should shorten in reverse properly', function()
-            assert.are.equals(sx.shorten('foobar123', 6, true), '...123')
+            assert.are.equal(sx.shorten('foobar123', 6, true), '...123')
+        end)
+
+        it('properly handles exact-sized strings', function()
+            assert.are.equal(sx.shorten('foobar', 6), 'foobar')
+            assert.are.equal(sx.shorten('foobar', 6, true), 'foobar')
         end)
     end)
 
+    describe('chomp', function()
+        pending('will trim all types of newlines', function() end)
+
+        pending('will trim user-defined separators', function() end)
+    end)
 
 end)
