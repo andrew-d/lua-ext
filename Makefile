@@ -2,3 +2,6 @@
 
 doc:
 	@ldoc.lua src
+
+test:
+	@busted
