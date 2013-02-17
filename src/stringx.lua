@@ -1,3 +1,6 @@
+--- A module that contains many helpful string extensions.
+-- @module stringx
+
 -- Our global environment.
 local P = {}
 
@@ -138,12 +141,13 @@ end
 
 
 -------------------------------------------------------------------------------
--- Strip any final newline from a string
+-- Strip a final value (default: newlines) from the end of a string
 -- @param s The string to chomp
--- @return The string, with any final newline characters removed
-function chomp(s, separator)
+-- @param final The value to remove from the end of s
+-- @return The string, with any final characters removed
+function chomp(s, final)
     if separator ~= nil then
-        return (string.gsub(s, escape_pattern(separator) .. '$', ''))
+        return (string.gsub(s, escape_pattern(final) .. '$', ''))
     else
         -- First remove '\n', then '\r', so we don't clobber 'foo\n\r'.
         return (string.gsub(string.gsub(s, '\n$', ''), '\r$', ''))

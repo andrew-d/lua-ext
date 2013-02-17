@@ -82,7 +82,7 @@ local _other_mapping = {
 -- Returns the current processor architecture.
 -- The string returned will be one of 'x86', 'x64', 'ia64', 'unknown', or
 -- whatever `uname -p` returns.
--- @returns A string indicating the processor architecture
+-- @return A string indicating the processor architecture
 function architecture()
     local arch
 
