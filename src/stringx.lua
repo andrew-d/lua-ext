@@ -11,6 +11,7 @@ local type = type
 local pairs, ipairs = pairs, ipairs
 local string = string
 local error = error
+local print = print
 
 -- No more external access after this point.
 if string.sub(_VERSION, 5) == '5.2' then
@@ -84,17 +85,6 @@ function isupper(s)
     return string.find(s, '^[%u%s]+$') == 1
 end
 
-
--------------------------------------------------------------------------------
--- Returns a copy of the string
--- @param s The string
--- @return A copy of the input string
-function copy(s)
-    return s .. ''
-end
-dup = copy
-
-
 -------------------------------------------------------------------------------
 -- Return the single character at the given index.
 -- @param s The string
@@ -146,7 +136,7 @@ end
 -- @param final The value to remove from the end of s
 -- @return The string, with any final characters removed
 function chomp(s, final)
-    if separator ~= nil then
+    if final ~= nil then
         return (string.gsub(s, escape_pattern(final) .. '$', ''))
     else
         -- First remove '\n', then '\r', so we don't clobber 'foo\n\r'.
@@ -234,7 +224,7 @@ local function _find_last(s, sub, first, last)
     while start do
         last_start = start
         start, fin = string.find(s, sub, fin + 1, true)
-        if last and start > last then
+        if start and last and start > last then
             break
         end
     end
@@ -248,10 +238,12 @@ end
 -- @param s The string to search
 -- @param sub The string to search for
 -- @param first The start index
+-- @param last  The last index
 -- @return The index of the first instance, or nil if not found
-function lfind(s, sub, first)
+function lfind(s, sub, first, last)
     local r = string.find(s, sub, first, true)
     if r then
+        if last and (r + #sub) > last then return nil end
         return r
     else
         return nil
@@ -286,7 +278,8 @@ end
 -- @return The new string
 function replace(s, old, new, count)
     -- We escape old, escape percents in new, and then gsub.
-    return (string.gsub(s, escape_pattern(old), new:gsub('%%', '%%%%'), n))
+    -- TODO: do more than replace percents?
+    return (string.gsub(s, escape_pattern(old), new:gsub('%%', '%%%%'), count))
 end
 
 
@@ -375,13 +368,12 @@ end
 -- Helper function for partition/rpartition, below.
 local function _partition(s, sep, func)
     -- Use the function to find the match.
-    local start, fin = func(s, sep)
+    local start = func(s, sep)
+
     if not start or start == -1 then
         return s, '', ''
     else
-        if not fin then
-            fin = start
-        end
+        local fin = start + #sep - 1
 
         return string.sub(s, 1, start - 1),
                string.sub(s, start, fin),
@@ -445,11 +437,7 @@ end
 -- @param padstr The padding string to use (defaults to ' ')
 -- @return The newly justified string
 function ljust(s, i, padstr)
-    if padstr == nil then
-        padstr = ' '
-    end
-
-    return s .. get_padding(s, i, padstr)
+    return s .. get_padding(s, i, padstr or ' ')
 end
 
 
