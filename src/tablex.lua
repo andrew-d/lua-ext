@@ -12,6 +12,7 @@ local table = table
 local error = error
 local print = print
 
+
 -- No more external access after this point.
 if string.sub(_VERSION, 5) == '5.2' then
     _ENV = P
@@ -197,17 +198,20 @@ end
 
 patch = nil
 local excludes = {
-    patch,
-    range,
+    ['patch'] = true,
+    ['range'] = true,
 }
 -------------------------------------------------------------------------------
 -- Adds all the functions in this module to the 'table' table.  Note that we
 -- exclude some functions that don't take a table as the first argument, such
 -- as this function, the range() function, and so on.
-patch = function()
+-- @param mod If given, the module to patch these functions into.  Defaults to
+-- the table module.
+patch = function(mod)
+    mod = mod or table
     for key, val in pairs(P) do
-        if val ~= patch then
-            table[key] = val
+        if not excludes[key] then
+            mod[key] = val
         end
     end
 end
