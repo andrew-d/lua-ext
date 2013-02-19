@@ -20,6 +20,7 @@ else
     setfenv(1, P)
 end
 
+
 -------------------------------------------------------------------------------
 -- Performs a shallow-copy of the given table, optionally copying the input
 -- table's metatable.
@@ -196,11 +197,14 @@ end
 
 
 
+-- We need to exclude certain things from being patched (mainly, the patch
+-- function itself).
 patch = nil
 local excludes = {
     ['patch'] = true,
     ['range'] = true,
 }
+
 -------------------------------------------------------------------------------
 -- Adds all the functions in this module to the 'table' table.  Note that we
 -- exclude some functions that don't take a table as the first argument, such

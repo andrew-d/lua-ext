@@ -27,8 +27,9 @@ end
 -- @return A string with any special characters escaped, such that it can be
 -- used as a pattern
 function escape_pattern(s)
-    -- Prepend all non-alphanumeric characters with a percent sign.
-    return (string.gsub(s, "(%W)", "%%%1"))
+    -- Prepend all special characters with a percent sign.  Note that the list
+    -- of special characters was taken from Lua's documentation.
+    return (string.gsub(s, "[%(%)%.%%%+%-%*%?%[%]%^%$]", "%%%1"))
 end
 
 
