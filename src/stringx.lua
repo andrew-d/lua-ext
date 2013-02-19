@@ -483,10 +483,12 @@ end
 
 -------------------------------------------------------------------------------
 -- Adds all the functions in this module to the 'string' table, so they can be
--- used directly on strings.
+-- used directly on strings.  Note that we exclude this function itself.
 function patch()
     for key, val in pairs(P) do
-        string[key] = val
+        if val ~= patch then
+            string[key] = val
+        end
     end
 end
 
