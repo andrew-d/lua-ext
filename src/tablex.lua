@@ -72,8 +72,8 @@ local _sort = table.sort
 -- @param t The table to sort
 -- @param func A comparator function
 -- @return A sorted version of t
-function sort(t, c)
-    _sort(t, c)
+function sort(t, func)
+    _sort(t, func)
     return t
 end
 
@@ -135,10 +135,10 @@ end
 -- @param t The table to clear
 -- @return The original table passed in, which is now empty
 function clear(t)
-    for k in keys(t) do
+    for k, v in pairs(t) do
         t[k] = nil
     end
-    return ret
+    return t
 end
 
 
@@ -181,7 +181,21 @@ function range(start, fin, step)
 end
 
 
-local patch
+-------------------------------------------------------------------------------
+-- Transpose the table, swapping keys and values.
+-- @param t The table to transpose
+-- @return A copy of the table, with the keys and values transposes
+function transpose(t)
+    local ret = {}
+    for k, v in pairs(t) do
+        ret[v] = k
+    end
+    return ret
+end
+
+
+
+patch = nil
 local excludes = {
     patch,
     range,
@@ -190,7 +204,7 @@ local excludes = {
 -- Adds all the functions in this module to the 'table' table.  Note that we
 -- exclude some functions that don't take a table as the first argument, such
 -- as this function, the range() function, and so on.
-function patch()
+patch = function()
     for key, val in pairs(P) do
         if val ~= patch then
             table[key] = val
