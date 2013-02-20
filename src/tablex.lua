@@ -7,10 +7,11 @@ local P = {}
 -- Import section:
 -- We declare everything this package needs from "outside" here.
 local type = type
-local pairs, ipairs = pairs, ipairs
+local pairs, ipairs, next = pairs, ipairs, next
 local table = table
 local error = error
 local print = print
+local getmetatable, setmetatable = getmetatable, setmetatable
 
 
 -- No more external access after this point.
@@ -18,6 +19,13 @@ if string.sub(_VERSION, 5) == '5.2' then
     _ENV = P
 else
     setfenv(1, P)
+end
+
+
+-- Helper function to copy metatables.
+local function copymeta(src, dest, default)
+    setmetatable(dest, getmetatable(src) or default)
+    return dest
 end
 
 
@@ -195,6 +203,178 @@ function transpose(t)
     return ret
 end
 
+
+-------------------------------------------------------------------------------
+-- Compare two tables using a given comparison function.
+-- @param t The table to compare
+-- @param t2 The table to compare against
+-- @param cmp The comparison function.  Should return a truthy value of two
+-- table values are equal.
+-- @return A boolean indicating whether the two tables are equal.
+function compare(t, t2, cmp)
+    for k, v in pairs(t) do
+        if not cmp(v, t2[k]) then return false end
+    end
+    for k, v in pairs(t2) do
+        if not cmp(v, t[k]) then return false end
+    end
+    return true
+end
+
+
+-------------------------------------------------------------------------------
+-- Compare two list-like tables using a given comparison function.
+-- @param t The list-like table to compare
+-- @param t2 The list-like table to compare against
+-- @param cmp The comparison function.  Should return a truthy value of two
+-- table values are equal.
+-- @return A boolean indicating whether the two tables are equal.
+function comparei(t, t2, cmp)
+    if #t ~= #t2 then return false end
+
+    for i, v in ipairs(t) do
+        if not cmp(v, t2[i]) then
+            return false
+        end
+    end
+
+    return true
+end
+
+
+-------------------------------------------------------------------------------
+-- Compare two list-like tables using a given comparison function, without
+-- caring about element order.
+-- @param t The list-like table to compare
+-- @param t2 The list-like table to compare against
+-- @param cmp The comparison function.  Should return a truthy value of two
+-- table values are equal.
+-- @return A boolean indicating whether the two tables are equal.
+function compare_unordered(t, t2, cmp)
+    if #t ~= #t2 then return false end
+
+    local seen = {}
+    for i, v in ipairs(t) do
+        local found = nil
+
+        -- We search through all elements in the table that we haven't already
+        -- "seen".
+        for j, v2 in ipairs(t2) do
+            if not seen[j] then
+                if cmp(v, t2[i]) then
+                    found = j
+                    break
+                end
+            end
+        end
+
+        if not found then
+            return false
+        end
+
+        -- We mark the index in the second array as 'seen', so we don't match
+        -- it again.
+        seen[found] = true
+    end
+
+    return true
+end
+
+
+-------------------------------------------------------------------------------
+-- Returns the index of the first value in a list-like table.
+-- @param t The list-like table to search
+-- @param val The value to search for
+-- @param start The starting index to search at.  Negative indexes are taken
+-- from the end of the list (defaults to 1).
+-- @return An integer index if found, or nil otherwise
+function find(t, val, start)
+    start = start or 1
+
+    if start < 0 then
+        start = #t + start + 1
+    end
+
+    for i = start, #t do
+        if t[i] == val then
+            return i
+        end
+    end
+
+    return nil
+end
+
+
+-------------------------------------------------------------------------------
+-- Returns the index of the last value in a list-like table.
+-- @param t The list-like table to search
+-- @param val The value to search for
+-- @param start The starting index to search at.  Negative indexes are taken
+-- from the end of the list (defaults to 1).
+-- @return An integer index if found, or nil otherwise
+function rfind(t, val, start)
+    start = start or 1
+
+    if start < 0 then
+        start = #t + start + 1
+    end
+
+    for i = start, #t, -1 do
+        if t[i] == val then
+            return i
+        end
+    end
+
+    return nil
+end
+
+
+-------------------------------------------------------------------------------
+-- Apply a function to all values of a table, returning a table of the results.
+-- This function will copy the metatable of the input table to the output.
+-- @param t The table
+-- @param func A function that takes 1 or more arguments
+-- @param ... Any additional arguments to pass to the function
+-- @return A table containing the results of applying func(t[value], ...) for
+-- all values in t.
+function map(t, func, ...)
+    local ret = {}
+    for k, v in pairs(t) do
+        ret[k] = func(v, ...)
+    end
+    return copymeta(t, ret)
+end
+
+
+-------------------------------------------------------------------------------
+-- Apply a function to all values of a table, modifying the table in-place.
+-- @param t The table
+-- @param func A function that takes 1 or more arguments
+-- @param ... Any additional arguments to pass to the function
+-- @return The original table, t
+function map_inplace(t, func, ...)
+    for k, v in pairs(t) do
+        t[k] = func(v, ...)
+    end
+    return t
+end
+
+
+-------------------------------------------------------------------------------
+-- Apply a function to all values in a list-like table, returning a list-like
+-- table of the results.
+-- @param t The list-like table
+-- @param func A function that takes 1 or more arguments
+-- @param ... Any additional arguments to pass to the function
+-- @return A list-like table containing the results of applying
+-- func(t[value], ...) for all values in t.
+function mapi(t, func, ...)
+    local ret = {}
+    for k, v in ipairs(t) do
+        ret[k] = func(v, ...) or false
+    end
+    return copymeta(t, ret)
+end
 
 
 -- We need to exclude certain things from being patched (mainly, the patch
