@@ -13,6 +13,8 @@ local error = error
 local print = print
 local getmetatable, setmetatable = getmetatable, setmetatable
 
+local tostring = tostring
+
 
 -- No more external access after this point.
 if string.sub(_VERSION, 5) == '5.2' then
@@ -260,7 +262,7 @@ function compare_unordered(t, t2, cmp)
         -- "seen".
         for j, v2 in ipairs(t2) do
             if not seen[j] then
-                if cmp(v, t2[i]) then
+                if cmp(v, v2) then
                     found = j
                     break
                 end
@@ -318,7 +320,7 @@ function rfind(t, val, start)
         start = #t + start + 1
     end
 
-    for i = start, #t, -1 do
+    for i = #t, start, -1 do
         if t[i] == val then
             return i
         end

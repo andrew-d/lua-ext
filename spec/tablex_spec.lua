@@ -17,7 +17,7 @@ describe("Table extension library", function()
             assert.equal(c[1], 1)
             assert.equal(c[2][1], 2)
 
-            -- Mutate the table.  The embedded table should be the same.
+            -- Mutate the table.  The embedded table should be modified.
             t[1] = 3
             assert.equal(c[1], 1)
 
@@ -42,7 +42,38 @@ describe("Table extension library", function()
         end)
     end)
 
-    pending('deepcopy', function() end)
+    describe('deepcopy', function()
+        local t, c
+
+        setup(function()
+            t = {1, {2}}
+        end)
+
+        teardown(function()
+            t = nil
+        end)
+
+        it('will deep-copy a table', function()
+            c = tx.deepcopy(t, false)
+            assert.equal(c[1], 1)
+            assert.equal(c[2][1], 2)
+
+            -- Mutate the table.  The embedded table should remain the same.
+            t[1] = 3
+            assert.equal(c[1], 1)
+
+            t[2][1] = 4
+            assert.equal(c[2][1], 2)
+        end)
+
+        it('will preserve the metatable', function()
+            local mt = {}
+            setmetatable(t, mt)
+
+            c = tx.deepcopy(t)
+            assert.equal(getmetatable(c), mt)
+        end)
+    end)
 
     describe('sort', function()
         it('will return the original table', function()
@@ -184,7 +215,6 @@ describe("Table extension library", function()
         end)
 
         it("will generate a simple range that's reversed", function()
-            for k,v in pairs(tx.range(10, 1, -1)) do print(k,v) end
             assert_range({10,9,8,7,6,5,4,3,2,1}, 10, 1, -1)
         end)
 
@@ -237,7 +267,28 @@ describe("Table extension library", function()
         end)
     end)
 
-    pending('compare_unordered', function() end)
+    describe('compare_unordered', function()
+        local cmp
+
+        setup(function()
+            cmp = spy.new(function(x, y) return x == y end)
+        end)
+
+        it('will compare tables using the given function', function()
+            local t = {1, 2, 3}
+            local u = {1, 2, 3}
+
+            assert.is_true(tx.compare_unordered(t, u, cmp))
+            assert.spy(cmp).was.called()
+        end)
+
+        it('will compare ignoring order', function()
+            local t = {1,2,3}
+            local u = {3,2,1}
+
+            assert.is_true(tx.compare_unordered(t, u, cmp))
+        end)
+    end)
 
     describe('find', function()
         it('will find a value in a table', function()
@@ -253,7 +304,19 @@ describe("Table extension library", function()
         end)
     end)
 
-    pending('rfind', function() end)
+    describe('rfind', function()
+        it('will find a value in a table', function()
+            assert.equal(tx.rfind({3,4,5}, 5), 3)
+        end)
+
+        it('will respect the start parameter', function()
+            assert.equal(tx.rfind({3,4,5,3}, 3, 2), 4)
+        end)
+
+        it('supports negative start indexes', function()
+            assert.equal(tx.rfind({4,3,3,3,3}, 4, -2), nil)
+        end)
+    end)
 
     describe('map', function()
         it('will map a table', function()
