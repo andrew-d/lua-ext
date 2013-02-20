@@ -172,15 +172,14 @@ end
 -- @param step  The step size, which can be negative (default: 1)
 -- @return A list-like table of numbers
 function range(start, fin, step)
+    step = step or 1
+
     if start == fin then
         return {start}
-    elseif start > fin then
-        return {}
     end
 
     local ret = {}
     local counter = 1
-    step = step or 1
 
     for i = start,fin,step do
         ret[counter] = i
@@ -347,20 +346,6 @@ end
 
 
 -------------------------------------------------------------------------------
--- Apply a function to all values of a table, modifying the table in-place.
--- @param t The table
--- @param func A function that takes 1 or more arguments
--- @param ... Any additional arguments to pass to the function
--- @return The original table, t
-function map_inplace(t, func, ...)
-    for k, v in pairs(t) do
-        t[k] = func(v, ...)
-    end
-    return t
-end
-
-
--------------------------------------------------------------------------------
 -- Apply a function to all values in a list-like table, returning a list-like
 -- table of the results.
 -- @param t The list-like table
@@ -374,6 +359,20 @@ function mapi(t, func, ...)
         ret[k] = func(v, ...) or false
     end
     return copymeta(t, ret)
+end
+
+
+-------------------------------------------------------------------------------
+-- Apply a function to all values of a table, modifying the table in-place.
+-- @param t The table
+-- @param func A function that takes 1 or more arguments
+-- @param ... Any additional arguments to pass to the function
+-- @return The original table, t
+function transform(t, func, ...)
+    for k, v in pairs(t) do
+        t[k] = func(v, ...)
+    end
+    return t
 end
 
 

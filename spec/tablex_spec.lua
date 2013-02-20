@@ -158,7 +158,40 @@ describe("Table extension library", function()
         end)
     end)
 
-    pending('range', function() end)
+    describe('range', function()
+        local c = function(x, y) return x == y end
+
+        local function assert_range(t, ...)
+            local ra = tx.range(...)
+            assert.is_true(tx.compare(ra, t, c))
+        end
+
+        it('will generate a simple range', function()
+            assert_range({1,2,3,4,5,6,7,8,9,10}, 1, 10)
+        end)
+
+        it('will generate a more complex range', function()
+            assert_range({1,4,7,10}, 1, 10, 3)
+        end)
+
+        it('will generate a single-value range', function()
+            assert_range({1}, 1, 1)
+        end)
+
+        it('will generate a empty range', function()
+            assert_range({}, 3, 1)
+            assert_range({}, 1, 3, -1)
+        end)
+
+        it("will generate a simple range that's reversed", function()
+            for k,v in pairs(tx.range(10, 1, -1)) do print(k,v) end
+            assert_range({10,9,8,7,6,5,4,3,2,1}, 10, 1, -1)
+        end)
+
+        it("will generate a more complex range that's reversed", function()
+            assert_range({10,7,4,1}, 10, 1, -3)
+        end)
+    end)
 
     describe('transpose', function()
         it('will transpose a table', function()
@@ -245,10 +278,10 @@ describe("Table extension library", function()
         end)
     end)
 
-    describe('map_inplace', function()
-        it('will map a table in place', function()
+    describe('transform', function()
+        it('will transform a table in place', function()
             local t = {1,2,foo=3}
-            local u = tx.map_inplace(t, function(x) return x + 1 end)
+            local u = tx.transform(t, function(x) return x + 1 end)
 
             assert.equal(u, t)
             assert.equal(u[1], 2)
