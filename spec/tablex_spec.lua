@@ -89,6 +89,7 @@ describe("Table extension library", function()
 
         it('will not return true for non-empty tables', function()
             assert.is_false(tx.isempty({1}))
+            assert.is_false(tx.isempty({foo='bar'}))
         end)
     end)
 

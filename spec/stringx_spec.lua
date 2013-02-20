@@ -206,6 +206,7 @@ describe("String extension library", function()
         end)
 
         it('will respect the "last" parameter', function()
+            assert.are.equal(sx.rfind('asdfqwerty', 'y', 2, 5), nil)
             assert.are.equal(sx.rfind('ababab', 'ab', 2, 5), 3)
         end)
 

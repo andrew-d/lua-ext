@@ -11,7 +11,9 @@ local type = type
 local pairs, ipairs = pairs, ipairs
 local string = string
 local error = error
+
 local print = print
+local tostring = tostring
 
 -- No more external access after this point.
 if string.sub(_VERSION, 5) == '5.2' then
@@ -220,12 +222,22 @@ end
 -- match.
 local function _find_last(s, sub, first, last)
     local start, fin = string.find(s, sub, first, true)
-    local last_start
+    local last_start = nil
+
+    -- If the first match is beyond the end of the string, or we didn't find
+    -- anything, we're done.
+    if (not start) or (start and last and (start + #sub) > last) then
+        return nil
+    end
 
     while start do
         last_start = start
+
+        -- Find the next match.
         start, fin = string.find(s, sub, fin + 1, true)
-        if start and last and start > last then
+
+        -- Check if this match is beyond the given last value.
+        if start and last and (start + #sub) > last then
             break
         end
     end
