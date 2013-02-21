@@ -374,4 +374,24 @@ describe("Table extension library", function()
         end)
     end)
 
+    describe('reduce', function()
+        local function add(x, y) return x + y end
+
+        it('will reduce a simple sequence', function()
+            assert.equal(tx.reduce({1,2,3}, add), 6)
+        end)
+
+        it('will reduce with a default value', function()
+            assert.equal(tx.reduce({1,2,3}, add, 4), 10)
+        end)
+
+        it('will reduce an empty sequence to nil', function()
+            assert.equal(tx.reduce({}, add), nil)
+        end)
+
+        it('will reduce an empty sequence with initial to initial', function()
+            assert.equal(tx.reduce({}, add, 1), 1)
+        end)
+    end)
+
 end)

@@ -111,11 +111,13 @@ function architecture()
     if arch ~= nil then
         return _other_mapping[arch] or arch
     end
+
+    return 'unknown'
 end
 
 
 -------------------------------------------------------------------------------
--- The current version of Lua, as a string.
+-- The current version of Lua, as a string (e.g. "5.1", "5.2", etc.)
 lua_version = _lua_version
 
 

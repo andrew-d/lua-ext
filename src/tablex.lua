@@ -378,6 +378,39 @@ function transform(t, func, ...)
 end
 
 
+-------------------------------------------------------------------------------
+-- Apply a function that takes two arguments to all elements in a list-like
+-- table, from left to right.  This reduces the sequence to a single value.
+-- If the 'initial' parameter is given, then it will also act as the default
+-- value if the sequence is empty.  Otherwise, if the sequence is empty and
+-- no initial value is given, this function will return nil.
+-- @param t The table
+-- @param func A function that takes two arguments and returns a single value
+-- @param initial (optional) The initial value to use.  If present, this is
+-- placed "before" the other elements in the sequence
+-- @return The result of the reduce operation.
+function reduce(t, func, initial)
+    if #t == 0 then return initial end
+
+    -- Perform the reduce
+    local start, ret
+
+    if initial then
+        ret = initial
+        start = 1
+    else
+        ret = t[1]
+        start = 2
+    end
+
+    for i = start,#t do
+        ret = func(ret, t[i])
+    end
+
+    return ret
+end
+
+
 -- We need to exclude certain things from being patched (mainly, the patch
 -- function itself).
 patch = nil
