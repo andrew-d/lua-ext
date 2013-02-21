@@ -205,6 +205,11 @@ function transpose(t)
 end
 
 
+-- Default equality comparison function
+local function _default_cmp(x, y)
+    return x == y
+end
+
 -------------------------------------------------------------------------------
 -- Compare two tables using a given comparison function.
 -- @param t The table to compare
@@ -213,6 +218,7 @@ end
 -- table values are equal.
 -- @return A boolean indicating whether the two tables are equal.
 function compare(t, t2, cmp)
+    cmp = cmp or _default_cmp
     for k, v in pairs(t) do
         if not cmp(v, t2[k]) then return false end
     end
@@ -233,6 +239,7 @@ end
 function comparei(t, t2, cmp)
     if #t ~= #t2 then return false end
 
+    cmp = cmp or _default_cmp
     for i, v in ipairs(t) do
         if not cmp(v, t2[i]) then
             return false
@@ -253,6 +260,7 @@ end
 -- @return A boolean indicating whether the two tables are equal.
 function compare_unordered(t, t2, cmp)
     if #t ~= #t2 then return false end
+    cmp = cmp or _default_cmp
 
     local seen = {}
     for i, v in ipairs(t) do

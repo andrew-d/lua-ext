@@ -249,6 +249,11 @@ describe("Table extension library", function()
             assert.is_true(tx.compare(t, u, cmp))
             assert.spy(cmp).was.called()
         end)
+
+        it('will default to comparing for equality', function()
+            assert.is_true(tx.compare({1,2,3}, {1,2,3}))
+            assert.is_false(tx.compare({1,2,3}, {1,2,4}))
+        end)
     end)
 
     describe('comparei', function()
@@ -265,6 +270,11 @@ describe("Table extension library", function()
         it('will ignore non-integer keys', function()
             local f = function(x, y) return x == y end
             assert.is_true(tx.comparei({1, foo='bar'}, {1, foo='baz'}, f))
+        end)
+
+        it('will default to comparing for equality', function()
+            assert.is_true(tx.comparei({1,2,3}, {1,2,3}))
+            assert.is_false(tx.comparei({1,2,3}, {1,2,4}))
         end)
     end)
 
@@ -288,6 +298,11 @@ describe("Table extension library", function()
             local u = {3,2,1}
 
             assert.is_true(tx.compare_unordered(t, u, cmp))
+        end)
+
+        it('will default to comparing for equality', function()
+            assert.is_true(tx.compare_unordered({1,2,3}, {1,2,3}))
+            assert.is_false(tx.compare_unordered({1,2,3}, {1,2,4}))
         end)
     end)
 
