@@ -12,6 +12,8 @@ local table = table
 local error = error
 local print = print
 local getmetatable, setmetatable = getmetatable, setmetatable
+local min, max, huge = math.min, math.max, math.huge
+local unpack = unpack
 
 local tostring = tostring
 
@@ -387,6 +389,38 @@ end
 
 
 -------------------------------------------------------------------------------
+-- Apply a function to any number of list-like tables, returning a list-like
+-- table containing the results.  Note that this function will only map up to
+-- the minimum length of all input tables.
+-- @param func A function that takes a number of arguments equal to the number
+-- of tables that were passed in.
+-- @param ... Any number of tables passed.
+-- @return A table containing the results of applying func(t1[i],  t2[i], ...)
+-- for all i.
+function mapn(func, ...)
+    local ret = {}
+    local lists = {...}
+    local len = huge
+
+    for i = 1,#lists do
+        len = min(len, #(lists[i]))
+    end
+
+    for i = 1,len do
+        local args = {}
+
+        for j = 1,#lists do
+            table.insert(args, lists[j][i])
+        end
+
+        table.insert(ret, func(unpack(args)))
+    end
+
+    return ret
+end
+
+
+-------------------------------------------------------------------------------
 -- Apply a function that takes two arguments to all elements in a list-like
 -- table, from left to right.  This reduces the sequence to a single value.
 -- If the 'initial' parameter is given, then it will also act as the default
@@ -413,6 +447,58 @@ function reduce(t, func, initial)
 
     for i = start,#t do
         ret = func(ret, t[i])
+    end
+
+    return ret
+end
+
+
+-------------------------------------------------------------------------------
+-- Return a list-like table of list-like tables, such that each sub-table
+-- contains the i-th element from the two input values.  For example,
+-- zip({1,2,3}, {4,5,6}) == {{1,4}, {2,5}, {3,6}}
+-- @param t The first table
+-- @param t2 The second table
+-- @return The zipped table, as above.
+function zip(t, t2)
+    local ret = {}
+    local cnt = min(#t, #t2)
+
+    for i = 1,cnt do
+        ret[i] = {t[i], t2[i]}
+    end
+
+    return ret
+end
+
+
+-------------------------------------------------------------------------------
+-- Return a list-like table of list-like tables, such that each sub-table
+-- contains the i-th element from the each of the input values.  For example,
+-- zip({1,2,3}, {4,5,6}) == {{1,4}, {2,5}, {3,6}}.  Note that this function is
+-- less efficient on two values than zip().
+-- @param t The first table
+-- @param ... Any number of additional tables to zip.
+-- @return The zipped table, as above.
+function zipn(...)
+    local ret = {}
+    local args = {...}
+    local len = huge
+
+    -- Get max length of all input lists.
+    for i = 1,#args do
+        len = min(len, #(args[i]))
+    end
+
+    -- For all items in the lists...
+    for i = 1,len do
+        local item = {}
+
+        for j = 1,#args do
+            table.insert(item, args[j][i])
+        end
+
+        table.insert(ret, item)
     end
 
     return ret

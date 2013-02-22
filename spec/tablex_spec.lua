@@ -1,5 +1,10 @@
 local tx = require('tablex')
 
+
+local function assert_lists_equal(l1, l2)
+    assert.is_true(tx.compare(l1, l2))
+end
+
 describe("Table extension library", function()
     describe('copy', function()
         local t, c
@@ -191,11 +196,9 @@ describe("Table extension library", function()
     end)
 
     describe('range', function()
-        local c = function(x, y) return x == y end
-
         local function assert_range(t, ...)
             local ra = tx.range(...)
-            assert.is_true(tx.compare(ra, t, c))
+            assert_lists_equal(ra, t)
         end
 
         it('will generate a simple range', function()
@@ -389,6 +392,27 @@ describe("Table extension library", function()
         end)
     end)
 
+    describe('mapn', function()
+        it('will map a single table', function()
+            local ret = tx.mapn(function(x) return x + 1 end, {1,2,3})
+            assert_lists_equal(ret, {2,3,4})
+        end)
+
+        it('will map multiple tables', function()
+            local ret = tx.mapn(function(x, y) return x + y end, {1,2,3}, {3,2,1})
+            assert_lists_equal(ret, {4,4,4})
+        end)
+
+        it('properly handles no tables', function()
+            assert_lists_equal({}, tx.mapn(function() end, {}))
+        end)
+
+        it('will truncate to the shortest list', function()
+            local ret = tx.mapn(function(x, y) return x + y end, {1,2,3}, {1,2})
+            assert_lists_equal(ret, {2,4})
+        end)
+    end)
+
     describe('reduce', function()
         local function add(x, y) return x + y end
 
@@ -406,6 +430,58 @@ describe("Table extension library", function()
 
         it('will reduce an empty sequence with initial to initial', function()
             assert.equal(tx.reduce({}, add, 1), 1)
+        end)
+    end)
+
+    describe('zip', function()
+        local function assert_zip(res, num, ...)
+            local z = tx.zip(...)
+            assert.equal(#z, num)
+            for i, v in ipairs(z) do
+                assert_lists_equal(res[i], v)
+            end
+        end
+
+        it('wlll zip together two lists', function()
+            assert_zip({{1, 10}, {2, 11}, {3, 12}}, 3, {1, 2, 3}, {10, 11, 12})
+        end)
+
+        it('will truncate to the shortest length', function()
+            assert_zip({{1,11}, {2, 12}}, 2, {1,2,3}, {11,12})
+        end)
+
+        it('will handle empty lists', function()
+            assert_zip({}, 0, {}, {})
+            assert_zip({}, 0, {1}, {})
+            assert_zip({}, 0, {}, {2})
+        end)
+    end)
+
+    describe('zipn', function()
+        local function assert_zipn(res, num, ...)
+            local z = tx.zipn(...)
+            assert.equal(#z, num)
+            for i, v in ipairs(z) do
+                assert_lists_equal(res[i], v)
+            end
+        end
+
+        it('wlll zip together two lists', function()
+            assert_zipn({{1, 10}, {2, 11}, {3, 12}}, 3, {1, 2, 3}, {10, 11, 12})
+        end)
+
+        it('will truncate to the shortest length', function()
+            assert_zipn({{1,11}, {2, 12}}, 2, {1,2,3}, {11,12})
+        end)
+
+        it('will handle empty lists', function()
+            assert_zipn({}, 0, {}, {})
+            assert_zipn({}, 0, {1}, {})
+            assert_zipn({}, 0, {}, {2})
+        end)
+
+        it('can handle multiple lists', function()
+            assert_zipn({{1,2,3},{4,5,6}}, 2, {1,4}, {2,5}, {3,6})
         end)
     end)
 
