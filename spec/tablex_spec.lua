@@ -14,15 +14,15 @@ describe("Table extension library", function()
 
         it('will copy a table', function()
             c = tx.copy(t, false)
-            assert.equal(c[1], 1)
-            assert.equal(c[2][1], 2)
+            assert.equal(1, c[1])
+            assert.equal(2, c[2][1])
 
             -- Mutate the table.  The embedded table should be modified.
             t[1] = 3
-            assert.equal(c[1], 1)
+            assert.equal(1, c[1])
 
             t[2][1] = 4
-            assert.equal(c[2][1], 4)
+            assert.equal(4, c[2][1])
         end)
 
         it('will not preserve the metatable by default', function()
@@ -30,7 +30,7 @@ describe("Table extension library", function()
             setmetatable(t, mt)
 
             c = tx.copy(t, false)
-            assert.not_equal(getmetatable(c), mt)
+            assert.not_equal(mt, getmetatable(c))
         end)
 
         it('will preserve the metatable when asked', function()
@@ -38,7 +38,7 @@ describe("Table extension library", function()
             setmetatable(t, mt)
 
             c = tx.copy(t, true)
-            assert.equal(getmetatable(c), mt)
+            assert.equal(mt, getmetatable(c))
         end)
     end)
 
@@ -55,15 +55,15 @@ describe("Table extension library", function()
 
         it('will deep-copy a table', function()
             c = tx.deepcopy(t, false)
-            assert.equal(c[1], 1)
-            assert.equal(c[2][1], 2)
+            assert.equal(1, c[1])
+            assert.equal(2, c[2][1])
 
             -- Mutate the table.  The embedded table should remain the same.
             t[1] = 3
-            assert.equal(c[1], 1)
+            assert.equal(1, c[1])
 
             t[2][1] = 4
-            assert.equal(c[2][1], 2)
+            assert.equal(2, c[2][1])
         end)
 
         it('will preserve the metatable', function()
@@ -71,14 +71,14 @@ describe("Table extension library", function()
             setmetatable(t, mt)
 
             c = tx.deepcopy(t)
-            assert.equal(getmetatable(c), mt)
+            assert.equal(mt, getmetatable(c))
         end)
     end)
 
     describe('sort', function()
         it('will return the original table', function()
             local t = {3, 2, 1}
-            assert.same(tx.sort(t), t)
+            assert.same(t, tx.sort(t))
         end)
     end)
 
@@ -107,8 +107,8 @@ describe("Table extension library", function()
         end)
 
         it('is also aliased as length and count', function()
-            assert.equal(tx.length, tx.size)
-            assert.equal(tx.count, tx.size)
+            assert.equal(tx.size, tx.length)
+            assert.equal(tx.size, tx.count)
         end)
     end)
 
@@ -297,29 +297,29 @@ describe("Table extension library", function()
 
     describe('find', function()
         it('will find a value in a table', function()
-            assert.equal(tx.find({3,4,5}, 5), 3)
+            assert.equal(3, tx.find({3,4,5}, 5))
         end)
 
         it('will respect the start parameter', function()
-            assert.equal(tx.find({3,4,5,3}, 3, 2), 4)
+            assert.equal(4, tx.find({3,4,5,3}, 3, 2))
         end)
 
         it('supports negative start indexes', function()
-            assert.equal(tx.find({3,3,3,3,3}, 3, -2), 4)
+            assert.equal(4, tx.find({3,3,3,3,3}, 3, -2))
         end)
     end)
 
     describe('rfind', function()
         it('will find a value in a table', function()
-            assert.equal(tx.rfind({3,4,5}, 5), 3)
+            assert.equal(3, tx.rfind({3,4,5}, 5))
         end)
 
         it('will respect the start parameter', function()
-            assert.equal(tx.rfind({3,4,5,3}, 3, 2), 4)
+            assert.equal(4, tx.rfind({3,4,5,3}, 3, 2))
         end)
 
         it('supports negative start indexes', function()
-            assert.equal(tx.rfind({4,3,3,3,3}, 4, -2), nil)
+            assert.equal(nil, tx.rfind({4,3,3,3,3}, 4, -2))
         end)
     end)
 
@@ -340,7 +340,7 @@ describe("Table extension library", function()
             setmetatable(t, mt)
 
             local u = tx.map(t, function(x) return x end)
-            assert.equal(getmetatable(u), mt)
+            assert.equal(mt, getmetatable(u))
         end)
     end)
 
@@ -350,7 +350,7 @@ describe("Table extension library", function()
             local u = tx.transform(t, function(x) return x + 1 end)
 
             assert.same({2,3,foo=4}, u)
-            assert.equal(u, t)
+            assert.equal(t, u)
         end)
     end)
 
@@ -368,7 +368,7 @@ describe("Table extension library", function()
             setmetatable(t, mt)
 
             local u = tx.mapi(t, function(x) return x end)
-            assert.equal(getmetatable(u), mt)
+            assert.equal(mt, getmetatable(u))
         end)
     end)
 
@@ -384,7 +384,7 @@ describe("Table extension library", function()
         end)
 
         it('properly handles no tables', function()
-            assert.same(tx.mapn(function() end, {}), {})
+            assert.same({}, tx.mapn(function() end, {}))
         end)
 
         it('will truncate to the shortest list', function()
