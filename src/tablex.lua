@@ -376,6 +376,7 @@ end
 
 -------------------------------------------------------------------------------
 -- Apply a function to all values of a table, modifying the table in-place.
+-- This is the same as the map() function, except it operates in-place.
 -- @param t The table
 -- @param func A function that takes 1 or more arguments
 -- @param ... Any additional arguments to pass to the function
@@ -426,6 +427,7 @@ end
 -- If the 'initial' parameter is given, then it will also act as the default
 -- value if the sequence is empty.  Otherwise, if the sequence is empty and
 -- no initial value is given, this function will return nil.
+-- Note: this function is aliased as "foldl".
 -- @param t The table
 -- @param func A function that takes two arguments and returns a single value
 -- @param initial (optional) The initial value to use.  If present, this is
@@ -451,6 +453,7 @@ function reduce(t, func, initial)
 
     return ret
 end
+foldl = reduce
 
 
 -------------------------------------------------------------------------------
@@ -499,6 +502,45 @@ function zipn(...)
         end
 
         table.insert(ret, item)
+    end
+
+    return ret
+end
+
+
+-- Normalize given values of a slice (i.e. t[start:end] in python terms)
+function normalize_slice(t, start, fin)
+    local len = #t
+
+    start = start or 1
+    fin = fin or len
+
+    if start < 0 then
+        start = len + start + 1
+    end
+
+    if fin < 0 then
+        fin = len + fin + 1
+    end
+
+    return start, fin
+end
+
+
+-------------------------------------------------------------------------------
+-- Extract a range of values from a list-like table.
+-- @param t A list-like table
+-- @param start If given, the start index.  Defaults to 1, negative indexes are
+-- from the end of the table.
+-- @param fin If given, the end index.  Defaults to #t, negative indexes are
+-- from the end of the table.
+-- @return A list-like table with the contents of the specified slice.
+function sub(t, start, fin)
+    start, fin = normalize_slice(t, start, fin)
+
+    local ret = {}
+    for i = start,fin do
+        table.insert(ret, t[i])
     end
 
     return ret

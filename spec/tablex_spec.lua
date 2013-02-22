@@ -1,10 +1,5 @@
 local tx = require('tablex')
 
-
-local function assert_lists_equal(l1, l2)
-    assert.is_true(tx.compare(l1, l2))
-end
-
 describe("Table extension library", function()
     describe('copy', function()
         local t, c
@@ -83,7 +78,7 @@ describe("Table extension library", function()
     describe('sort', function()
         it('will return the original table', function()
             local t = {3, 2, 1}
-            assert.equal(tx.sort(t), t)
+            assert.same(tx.sort(t), t)
         end)
     end)
 
@@ -121,15 +116,13 @@ describe("Table extension library", function()
         it('will return the keys of a table', function()
             local ks = tx.keys({foo='bar', asdf='baz'})
 
-            assert.equal(ks[1], 'foo')
-            assert.equal(ks[2], 'asdf')
+            assert.same({'foo', 'asdf'}, ks)
         end)
 
         it('will return the keys of a list-like table', function()
             local ks = tx.keys({1, 2})
 
-            assert.equal(ks[1], 1)
-            assert.equal(ks[2], 2)
+            assert.same({1,2}, ks)
         end)
     end)
 
@@ -137,15 +130,13 @@ describe("Table extension library", function()
         it('will return the values of a table', function()
             local vs = tx.values({foo='bar', asdf='baz'})
 
-            assert.equal(vs[1], 'bar')
-            assert.equal(vs[2], 'baz')
+            assert.same({'bar', 'baz'}, vs)
         end)
 
         it('will return the values of a list-like table', function()
             local vs = tx.values({3, 4})
 
-            assert.equal(vs[1], 3)
-            assert.equal(vs[2], 4)
+            assert.same({3, 4}, vs)
         end)
     end)
 
@@ -179,9 +170,7 @@ describe("Table extension library", function()
 
             tx.update(t, u)
 
-            assert.equal(t[1], 1)
-            assert.equal(t[2], 2)
-            assert.equal(t['foo'], 'bar')
+            assert.same({1,2,foo='bar'}, t)
         end)
 
         it('will overwrite the existing values', function()
@@ -190,15 +179,14 @@ describe("Table extension library", function()
 
             tx.update(t, u)
 
-            assert.equal(t[1], 1)
-            assert.equal(t['foo'], 'bar')
+            assert.same({1,foo='bar'}, t)
         end)
     end)
 
     describe('range', function()
         local function assert_range(t, ...)
             local ra = tx.range(...)
-            assert_lists_equal(ra, t)
+            assert.same(t, ra)
         end
 
         it('will generate a simple range', function()
@@ -232,9 +220,7 @@ describe("Table extension library", function()
             local t = {1, 3, foo='bar'}
             local u = tx.transpose(t)
 
-            assert.equal(u[1], 1)
-            assert.equal(u[3], 2)
-            assert.equal(u['bar'], 'foo')
+            assert.same({1,[3]=2,bar='foo'}, u)
         end)
 
         it('will do nothing to an empty table', function()
@@ -345,9 +331,7 @@ describe("Table extension library", function()
 
             local t = tx.map({1,2,foo=3}, map_fn)
 
-            assert.equal(t[1], 2)
-            assert.equal(t[2], 3)
-            assert.equal(t['foo'], 4)
+            assert.same({2,3,foo=4}, t)
         end)
 
         it('will copy the metatable', function()
@@ -365,10 +349,8 @@ describe("Table extension library", function()
             local t = {1,2,foo=3}
             local u = tx.transform(t, function(x) return x + 1 end)
 
+            assert.same({2,3,foo=4}, u)
             assert.equal(u, t)
-            assert.equal(u[1], 2)
-            assert.equal(u[2], 3)
-            assert.equal(u['foo'], 4)
         end)
     end)
 
@@ -377,9 +359,7 @@ describe("Table extension library", function()
             local t = {1,2,foo=3}
             local u = tx.mapi(t, function(x) return x + 1 end)
 
-            assert.equal(u[1], 2)
-            assert.equal(u[2], 3)
-            assert.equal(u['foo'], nil)
+            assert.same({2,3,foo=nil}, u)
         end)
 
         it('will copy the metatable', function()
@@ -395,21 +375,21 @@ describe("Table extension library", function()
     describe('mapn', function()
         it('will map a single table', function()
             local ret = tx.mapn(function(x) return x + 1 end, {1,2,3})
-            assert_lists_equal(ret, {2,3,4})
+            assert.same({2,3,4}, ret)
         end)
 
         it('will map multiple tables', function()
             local ret = tx.mapn(function(x, y) return x + y end, {1,2,3}, {3,2,1})
-            assert_lists_equal(ret, {4,4,4})
+            assert.same({4,4,4}, ret)
         end)
 
         it('properly handles no tables', function()
-            assert_lists_equal({}, tx.mapn(function() end, {}))
+            assert.same(tx.mapn(function() end, {}), {})
         end)
 
         it('will truncate to the shortest list', function()
             local ret = tx.mapn(function(x, y) return x + y end, {1,2,3}, {1,2})
-            assert_lists_equal(ret, {2,4})
+            assert.same({2,4}, ret)
         end)
     end)
 
@@ -417,19 +397,23 @@ describe("Table extension library", function()
         local function add(x, y) return x + y end
 
         it('will reduce a simple sequence', function()
-            assert.equal(tx.reduce({1,2,3}, add), 6)
+            assert.equal(6, tx.reduce({1,2,3}, add))
         end)
 
         it('will reduce with a default value', function()
-            assert.equal(tx.reduce({1,2,3}, add, 4), 10)
+            assert.equal(10, tx.reduce({1,2,3}, add, 4))
         end)
 
         it('will reduce an empty sequence to nil', function()
-            assert.equal(tx.reduce({}, add), nil)
+            assert.equal(nil, tx.reduce({}, add))
         end)
 
         it('will reduce an empty sequence with initial to initial', function()
-            assert.equal(tx.reduce({}, add, 1), 1)
+            assert.equal(1, tx.reduce({}, add, 1))
+        end)
+
+        it('is also aliased as "foldl"', function()
+            assert.equal(tx.reduce, tx.foldl)
         end)
     end)
 
@@ -438,7 +422,7 @@ describe("Table extension library", function()
             local z = tx.zip(...)
             assert.equal(#z, num)
             for i, v in ipairs(z) do
-                assert_lists_equal(res[i], v)
+                assert.same(res[i], v)
             end
         end
 
@@ -462,7 +446,7 @@ describe("Table extension library", function()
             local z = tx.zipn(...)
             assert.equal(#z, num)
             for i, v in ipairs(z) do
-                assert_lists_equal(res[i], v)
+                assert.same(res[i], v)
             end
         end
 
@@ -482,6 +466,35 @@ describe("Table extension library", function()
 
         it('can handle multiple lists', function()
             assert_zipn({{1,2,3},{4,5,6}}, 2, {1,4}, {2,5}, {3,6})
+        end)
+    end)
+
+    -- Note that this also tests normalize_slice too.
+    describe('sub', function()
+        local t = {1,2,3,4,5,6,7,8,9,10}
+
+        it('will extract simple ranges from the list', function()
+            assert.same({3,4,5}, tx.sub(t, 3, 5))
+        end)
+
+        it('will extract given just a start', function()
+            assert.same({8,9,10}, tx.sub(t, 8))
+        end)
+
+        it('will extract given just a end', function()
+            assert.same({1,2,3}, tx.sub(t, nil, 3))
+        end)
+
+        it('supports using negative start indexes', function()
+            assert.same({8,9,10}, tx.sub(t, -3))
+        end)
+
+        it('supports using negative end indexes', function()
+            assert.same({1,2,3}, tx.sub(t, nil, -8))
+        end)
+
+        it('supports both negative indexes', function()
+            assert.same({8,9}, tx.sub(t, -3, -2))
         end)
     end)
 
