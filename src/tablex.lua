@@ -12,7 +12,7 @@ local table = table
 local error = error
 local print = print
 local getmetatable, setmetatable = getmetatable, setmetatable
-local min, max, huge = math.min, math.max, math.huge
+local math = math
 local unpack = unpack
 
 local tostring = tostring
@@ -283,7 +283,7 @@ function compare_unordered(t, t2, cmp)
             return false
         end
 
-        -- We mark the index in the second array as 'seen', so we don't match
+        -- We mark the index in the second list as 'seen', so we don't match
         -- it again.
         seen[found] = true
     end
@@ -401,10 +401,10 @@ end
 function mapn(func, ...)
     local ret = {}
     local lists = {...}
-    local len = huge
+    local len = math.huge
 
     for i = 1,#lists do
-        len = min(len, #(lists[i]))
+        len = math.min(len, #(lists[i]))
     end
 
     for i = 1,len do
@@ -465,7 +465,7 @@ foldl = reduce
 -- @return The zipped table, as above.
 function zip(t, t2)
     local ret = {}
-    local cnt = min(#t, #t2)
+    local cnt = math.min(#t, #t2)
 
     for i = 1,cnt do
         ret[i] = {t[i], t2[i]}
@@ -486,11 +486,11 @@ end
 function zipn(...)
     local ret = {}
     local args = {...}
-    local len = huge
+    local len = math.huge
 
     -- Get max length of all input lists.
     for i = 1,#args do
-        len = min(len, #(args[i]))
+        len = math.min(len, #(args[i]))
     end
 
     -- For all items in the lists...
@@ -547,28 +547,284 @@ function sub(t, start, fin)
 end
 
 
--- We need to exclude certain things from being patched (mainly, the patch
--- function itself).
-patch = nil
-local excludes = {
-    ['patch'] = true,
-    ['range'] = true,
-}
+-------------------------------------------------------------------------------
+-- This function deletes every key-value pair from the given table for which
+-- the provided function returns true.
+-- @param t The table to delete from
+-- @param func A function that is passed the key and value, and should return
+-- true if the pair is to be deleted, or false otherwise.
+-- @return The original table
+function delete_if(t, func)
+    for k, v in pairs(t) do
+        if func(k, v) == true then
+            t[k] = nil
+        end
+    end
+    return t
+end
+
 
 -------------------------------------------------------------------------------
--- Adds all the functions in this module to the 'table' table.  Note that we
--- exclude some functions that don't take a table as the first argument, such
--- as this function, the range() function, and so on.
--- @param mod If given, the module to patch these functions into.  Defaults to
--- the table module.
-patch = function(mod)
+-- This function performs the same operation as delete_if, except it does not
+-- modify the original table and instead returns a copy.
+-- @param t The table to delete from
+-- @param func A function that is passed the key and value, and should return
+-- true if the pair is to be deleted, or false otherwise.
+-- @return A new table that contains all values for which func(k, v) did not
+-- return true.
+function reject(t, func)
+    local ret = {}
+    for k, v in pairs(t) do
+        if func(k, v) == false then
+            ret[k] = v
+        end
+    end
+    return ret
+end
+
+
+function keep_if(t, func)
+    for k, v in pairs(t) do
+        if func(k, v) ~= true then
+            t[k] = nil
+        end
+    end
+    return t
+end
+
+
+
+-- TODO: change to find_all? or alias?
+function select(t, func)
+    local ret = {}
+    for k, v in pairs(t) do
+        if func(k, v) == true then
+            ret[k] = v
+        end
+    end
+    return ret
+end
+
+
+function any(t, func)
+    local ret = false
+
+    for k, v in pairs(f) do
+        if func(k, v) then
+            ret = true
+        end
+    end
+
+    return ret
+end
+
+
+function all(t, func)
+    for k, v in pairs(f) do
+        if not func(k, v) then
+            return false
+        end
+    end
+
+    return true
+end
+
+
+function detect(t, func)
+    for k, v in pairs(t) do
+        if func(k, v) then
+            return k, v
+        end
+    end
+
+    return nil
+end
+
+
+function drop_while(t, func)
+    local ret = {}
+    local adding = false
+    for k, v in pairs(t) do
+        if adding then
+            ret[k] = v
+        else
+            if not func(k, v) then
+                adding = true
+                ret[k] = v
+            end
+        end
+    end
+
+    return ret
+end
+
+
+function group_by(t, func)
+    local ret = {}
+    for k, v in pairs(t) do
+        local key = func(k, v)
+        if ret[key] == nil then
+            ret[key] = {}
+        end
+
+        table.insert(ret[key], {k, v})
+    end
+
+    return ret
+end
+
+
+function group_byi(t, func)
+    local ret = {}
+    for i, v in ipairs(t) do
+        local key = func(v)
+        if ret[key] == nil then
+            ret[key] = {}
+        end
+
+        table.insert(ret[key], v)
+    end
+
+    return ret
+end
+
+
+local function generic_compare(k1, v1, k2, v2)
+    return v1 < v2
+end
+
+function max(t, func)
+    if func == nil then
+        func = generic_compare
+    end
+
+    local maxk, maxv
+    for k, v in pairs(t) do
+        if maxk == nil then
+            maxk = k
+            maxv = v
+        else
+            -- func(...) will return true if the current maximum values are
+            -- less than the current values.  If so, we make these values the
+            -- new max.
+            if func(maxk, maxv, k, v) then
+                maxk = k
+                maxv = v
+            end
+        end
+    end
+
+    return maxk, maxv
+end
+
+
+-- TODO: min
+-- TODO: one (returns true if func(k, v) returns true once for a table)
+-- TODO: none (returns true if func(k, v) doesn't return true for a table)
+
+
+function partition(t, func)
+    local trues, falses = {}, {}
+
+    for k, v in pairs(t) do
+        if func(k, v) then
+            table.insert(trues, {k, v})
+        else
+            table.insert(falses, {k, v})
+        end
+    end
+
+    return trues, falses
+end
+
+
+function partitioni(t, func)
+    local trues, falses = {}, {}
+
+    for i, v in ipairs(t) do
+        if func(i, v) then
+            table.insert(trues, v)
+        else
+            table.insert(falses, v)
+        end
+    end
+
+    return trues, falses
+end
+
+-------------------------------------------------------------------------------
+-- Given a list-like table, will return a new list-like table that is flattened
+-- by the given level.  That is to say, for every value that is a list-like
+-- table, extract it's elements into the new list, to the recursive depth
+-- specified.
+-- @param t The list-like table to flatten
+-- @param level The level to flatten to.  Use math.huge to represent "flatten
+-- everything"
+-- @return A new list-like table that has been flattened.
+-- TODO: Do we make this flatten a non list-like table too?
+function flatten(t, level)
+    level = level or 1
+    if level == 0 then return t end
+
+    local ret = {}
+    for i, v in ipairs(t) do
+        if type(v) ~= "table" then
+            table.insert(ret, v)
+        else
+            local flattened = flatten(v, level - 1)
+            for i, v in ipairs(flattened) do
+                table.insert(ret, v)
+            end
+        end
+    end
+
+    return ret
+end
+
+
+-------------------------------------------------------------------------------
+-- Adds all the functions in this module to the specified table.  Note that
+-- we default to the 'table' table, and we exclude this function itself.
+-- @param mod If given, the module to patch these functions into.  Defaults
+-- to the table module.
+function patch(mod)
     mod = mod or table
     for key, val in pairs(P) do
-        if not excludes[key] then
+        if val ~= patch then
             mod[key] = val
         end
     end
 end
+
+
+-------------------------------------------------------------------------------
+-- This table stores all functions that take a table as their first argument.
+-- This is particularly useful if you want to set a metatable on a table so
+-- that you can call functions like: tbl:copy(), as opposed to table.copy(tbl)
+table_methods = {
+    copy,
+    deepcopy,
+    sort,
+    isempty,
+    size,
+    keys,
+    values,
+    clear,
+    update,
+    transpose,
+    compare,
+    comparei,
+    compare_unordered,
+    find,
+    rfind,
+    map,
+    mapi,
+    transform,
+    reduce,
+    zip,
+    normalize_slice,
+    sub,
+}
 
 
 return P

@@ -498,4 +498,41 @@ describe("Table extension library", function()
         end)
     end)
 
+    describe('delete_if', function()
+        it('will delete using a function', function()
+            local pred = function(k, v) return k == 3 end
+
+            assert.same({3,4}, tx.delete_if({3,4,5}, pred))
+        end)
+
+        it('handles an empty table', function()
+            local pred = function(k, v) return false end
+
+            assert.same({}, tx.delete_if({}, pred))
+        end)
+
+        it('returns the same table', function()
+            local t = {}
+            assert.equal(t, tx.delete_if(t, function(k, v) return false end))
+        end)
+    end)
+
+    describe('flatten', function()
+        it('will flatten a simple list', function()
+            assert.same({1,2,3,4,5}, tx.flatten({{1,2}, 3, {4}, {5}}))
+        end)
+
+        it('will flatten to level 1 by default', function()
+            assert.same({{1,2,3}}, tx.flatten({{{1,2,3}}}))
+        end)
+
+        it('supports deeper levels of flattening', function()
+            assert.same({1,2,3}, tx.flatten({{{1,2,3}}}, 2))
+        end)
+
+        it('will return the original if passed a level of 0', function()
+            assert.same({{{1,2,3}}}, tx.flatten({{{1,2,3}}}, 0))
+        end)
+    end)
+
 end)
