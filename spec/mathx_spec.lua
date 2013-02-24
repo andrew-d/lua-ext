@@ -1,0 +1,28 @@
+local mx = require('mathx')
+
+describe("Math extension library", function()
+    describe('floor', function()
+        it('will truncate to 0 decimal places by default', function()
+            assert.equal(mx.floor(1.234), 1)
+        end)
+
+        it('supports truncating to a customizable number of places', function()
+            assert.equal(mx.floor(1.234, 1), 1.2)
+            assert.equal(mx.floor(1.234, 2), 1.23)
+        end)
+    end)
+
+    describe('round', function()
+        it('will round to 0 places by default', function()
+            assert.equal(mx.round(1.234), 1)
+            assert.equal(mx.round(1.5), 2)
+            assert.equal(mx.round(1.51), 2)
+        end)
+
+        it('supports rounding to a customizable number of places', function()
+            assert.equal(mx.round(1.234, 1), 1.2)
+            assert.equal(mx.round(1.25, 1), 1.3)
+            assert.equal(mx.round(1.215, 2), 1.22)
+        end)
+    end)
+end)
