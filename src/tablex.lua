@@ -714,25 +714,19 @@ function drop_while(t, func)
 end
 
 
+-------------------------------------------------------------------------------
+-- Groups the given table by the return value of the given function.  The
+-- returned table will have keys that are the results of func(i, v), and values
+-- as a list-like table with the corresponding values.
+-- @param t The table to group
+-- @param func A function that takes an index/value pair and should return a
+-- single value.
+-- @return A table, with keys that are the results of func(i, v), and values
+-- that are list-like tables containing all values.
 function group_by(t, func)
     local ret = {}
-    for k, v in pairs(t) do
-        local key = func(k, v)
-        if ret[key] == nil then
-            ret[key] = {}
-        end
-
-        table.insert(ret[key], {k, v})
-    end
-
-    return ret
-end
-
-
-function group_byi(t, func)
-    local ret = {}
     for i, v in ipairs(t) do
-        local key = func(v)
+        local key = func(i, v)
         if ret[key] == nil then
             ret[key] = {}
         end
@@ -748,6 +742,16 @@ local function generic_compare(k1, v1, k2, v2)
     return v1 < v2
 end
 
+
+-------------------------------------------------------------------------------
+-- This function will find the largest value in a table, comparing using the
+-- given function.  If not given, a function that performs "v1 < v2" will be
+-- used instead.
+-- @param t The table to search
+-- @param func The comparison function, receives (key1, val1, key2, val2), and
+-- should return a boolean
+-- @return max_key, max_val, which are the maximum values found in the input
+-- table, or nil, nil if the table is empty
 function max(t, func)
     if func == nil then
         func = generic_compare
@@ -778,6 +782,15 @@ end
 -- TODO: none (returns true if func(k, v) doesn't return true for a table)
 
 
+-------------------------------------------------------------------------------
+-- This function will pass each key/value pair in a table to a given function,
+-- and then return two tables: one which contains the key/value pairs for which
+-- the function returned true, and a table of the ones that returned false.
+-- @param t The table to partition
+-- @param func The partitioning function - called with func(k, v), and should
+-- return a boolean
+-- @return Two tables, which contain the {key, value} pairs for which the
+-- function returned true and false
 function partition(t, func)
     local trues, falses = {}, {}
 
@@ -793,6 +806,16 @@ function partition(t, func)
 end
 
 
+-------------------------------------------------------------------------------
+-- This function will pass each index/value pair in a list-like table to a
+-- given function, and then return two tables: one which contains the values
+-- for which the function returned true, and a table of the ones that returned
+-- false.
+-- @param t The table to partition
+-- @param func The partitioning function - called with func(i, v), and should
+-- return a boolean
+-- @return Two tables, which contain the values for which the function returned
+-- true and false
 function partitioni(t, func)
     local trues, falses = {}, {}
 
@@ -879,6 +902,19 @@ table_methods = {
     zip,
     normalize_slice,
     sub,
+    delete_if,
+    reject,
+    keep_if,
+    select,
+    any,
+    all,
+    detect,
+    drop_while,
+    group_by,
+    max,
+    partition,
+    partitioni,
+    flatten,
 }
 
 

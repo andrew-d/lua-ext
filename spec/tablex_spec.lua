@@ -644,6 +644,84 @@ describe("Table extension library", function()
         end)
     end)
 
+    describe('group_by', function()
+        it('will group a simple table', function()
+            assert.same({[0]={2, 4, 6}, [1]={1, 3, 5}},
+                        tx.group_by({1,2,3,4,5,6}, function(i, v) return v % 2 end)
+                        )
+        end)
+
+        it('properly handles empty tables', function()
+            assert.same({}, tx.group_by({}, nil))
+        end)
+    end)
+
+    describe('max', function()
+        it('will compare tables using less than by default', function()
+            local maxk, maxv = tx.max({1,5,4,7,3,6})
+            assert.equal(4, maxk)
+            assert.equal(7, maxv)
+        end)
+
+        it('can compare using the given function', function()
+            local maxk, maxv = tx.max({1,5,4,7,3,6},
+                                      function(a,b,c,d) return b > d end)
+            assert.equal(1, maxk)
+            assert.equal(1, maxv)
+        end)
+
+        it('will return nil for empty tables', function()
+            local maxk, maxv = tx.max({})
+            assert.is_nil(maxk)
+            assert.is_nil(maxv)
+        end)
+
+        it('will compare non-integer keys', function()
+            local t = {
+                ["foo"] = 7,
+                ["bar"] = 9,
+            }
+
+            local maxk, maxv = tx.max(t)
+            assert.equal("bar", maxk)
+            assert.equal(9, maxv)
+        end)
+    end)
+
+    describe('partition', function()
+        it('will partition a table', function()
+            local t = {1,2,3,4,5,6}
+            local pred = function(k, v) return v % 2 == 0 end
+            local evens, odds = tx.partition(t, pred)
+
+            assert.same({{2,2},{4,4},{6,6}}, evens)
+            assert.same({{1,1},{3,3},{5,5}}, odds)
+        end)
+
+        it('will return empty tables by default', function()
+            local a, b = tx.partition({}, nil)
+            assert.same({}, a)
+            assert.same({}, b)
+        end)
+    end)
+
+    describe('partitioni', function()
+        it('will partition a table', function()
+            local t = {1,2,3,4,5,6}
+            local pred = function(k, v) return v % 2 == 0 end
+            local evens, odds = tx.partitioni(t, pred)
+
+            assert.same({2,4,6}, evens)
+            assert.same({1,3,5}, odds)
+        end)
+
+        it('will return empty tables by default', function()
+            local a, b = tx.partitioni({}, nil)
+            assert.same({}, a)
+            assert.same({}, b)
+        end)
+    end)
+
     describe('flatten', function()
         it('will flatten a simple list', function()
             assert.same({1,2,3,4,5}, tx.flatten({{1,2}, 3, {4}, {5}}))
