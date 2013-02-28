@@ -517,6 +517,99 @@ describe("Table extension library", function()
         end)
     end)
 
+    describe('reject', function()
+        it('will delete using a function', function()
+            local pred = function(k, v) return k == 3 end
+
+            assert.same({3,4}, tx.reject({3,4,5}, pred))
+        end)
+
+        it('handles an empty table', function()
+            local pred = function(k, v) return false end
+
+            assert.same({}, tx.reject({}, pred))
+        end)
+
+        it('returns a different table', function()
+            local t = {}
+            assert.not_equal(t, tx.reject(t, function(k, v) return false end))
+        end)
+    end)
+
+    describe('keep_if', function()
+        it('will keep using a function', function()
+            local pred = function(k, v) return k < 3 end
+
+            assert.same({3,4}, tx.keep_if({3,4,5}, pred))
+        end)
+
+        it('handles an empty table', function()
+            local pred = function(k, v) return false end
+
+            assert.same({}, tx.keep_if({}, pred))
+        end)
+
+        it('returns the same table', function()
+            local t = {}
+            assert.equal(t, tx.keep_if(t, function(k, v) return false end))
+        end)
+    end)
+
+    describe('select', function()
+        it('will keep using a function', function()
+            local pred = function(k, v) return k < 3 end
+
+            assert.same({3,4}, tx.select({3,4,5}, pred))
+        end)
+
+        it('handles an empty table', function()
+            local pred = function(k, v) return false end
+
+            assert.same({}, tx.select({}, pred))
+        end)
+
+        it('returns a different table', function()
+            local t = {}
+            assert.not_equal(t, tx.select(t, function(k, v) return false end))
+        end)
+    end)
+
+    describe('any', function()
+        it('will properly test a table for truthiness', function()
+            assert.is_true(tx.any({false, nil, 4}))
+            assert.is_false(tx.any({false, false, false}))
+        end)
+
+        it('will use a function to check', function()
+            local pred = function(k, v) return v % 2 == 0 end
+
+            assert.is_true(tx.any({1, 3, 4, 5}, pred))
+            assert.is_false(tx.any({1, 3, 7, 5}, pred))
+        end)
+
+        it('will handle an empty table', function()
+            assert.is_false(tx.any({}))
+        end)
+    end)
+
+    describe('all', function()
+        it('will properly test a table for truthiness', function()
+            assert.is_true(tx.all({true, true, 4}))
+            assert.is_false(tx.all({false, true, false}))
+        end)
+
+        it('will use a function to check', function()
+            local pred = function(k, v) return v % 2 == 0 end
+
+            assert.is_true(tx.all({2, 4, 6, 8}, pred))
+            assert.is_false(tx.all({2, 4, 6, 9}, pred))
+        end)
+
+        it('will handle an empty table', function()
+            assert.is_true(tx.all({}))
+        end)
+    end)
+
     describe('flatten', function()
         it('will flatten a simple list', function()
             assert.same({1,2,3,4,5}, tx.flatten({{1,2}, 3, {4}, {5}}))

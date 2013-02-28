@@ -552,7 +552,7 @@ end
 -- the provided function returns true.
 -- @param t The table to delete from
 -- @param func A function that is passed the key and value, and should return
--- true if the pair is to be deleted, or false otherwise.
+-- true if the pair is to be deleted, or false otherwise
 -- @return The original table
 function delete_if(t, func)
     for k, v in pairs(t) do
@@ -569,7 +569,7 @@ end
 -- modify the original table and instead returns a copy.
 -- @param t The table to delete from
 -- @param func A function that is passed the key and value, and should return
--- true if the pair is to be deleted, or false otherwise.
+-- true if the pair is to be deleted, or false otherwise
 -- @return A new table that contains all values for which func(k, v) did not
 -- return true.
 function reject(t, func)
@@ -583,6 +583,14 @@ function reject(t, func)
 end
 
 
+-------------------------------------------------------------------------------
+-- This function deletes every key-value pair from the given table for which
+-- the provided function returns a non-true value.  I.e. it keeps all items
+-- for which the function returns true.
+-- @param t The table to process
+-- @param func A function that is passed the key and value, and should return
+-- true if the pair is to be kept, or false otherwise
+-- @return The original table
 function keep_if(t, func)
     for k, v in pairs(t) do
         if func(k, v) ~= true then
@@ -593,8 +601,14 @@ function keep_if(t, func)
 end
 
 
-
--- TODO: change to find_all? or alias?
+-------------------------------------------------------------------------------
+-- This function performs the same operation as keep_if, except that it returns
+-- a new table and does not modify the original.
+-- @param t The table to process
+-- @param func A function that is passed the key and value, and should return
+-- true if the pair is to be kept, or false otherwise
+-- @return A new table that contains all values for which func(k, v) returned
+-- true
 function select(t, func)
     local ret = {}
     for k, v in pairs(t) do
@@ -606,21 +620,46 @@ function select(t, func)
 end
 
 
-function any(t, func)
-    local ret = false
-
-    for k, v in pairs(f) do
-        if func(k, v) then
-            ret = true
-        end
-    end
-
-    return ret
+local function value_identity(k, v)
+    return v
 end
 
 
+-------------------------------------------------------------------------------
+-- This function passes each key/value pair in the given table to func, and
+-- will return true if the block ever returns a truthy value.  If func is not
+-- given, then the implementation will default to function(k, v) return v end -
+-- i.e. will test the truthiness of the values.
+-- @param t The table to test
+-- @param func A function that receives all key/value pairs
+-- @return A boolean value which represents whether the given function ever
+-- returned a truthy value.
+function any(t, func)
+    func = func or value_identity
+
+    for k, v in pairs(t) do
+        if func(k, v) then
+            return true
+        end
+    end
+
+    return false
+end
+
+
+-------------------------------------------------------------------------------
+-- This function passes each key/value pair in the given table to func, and
+-- will return true if the block returns a truthy value for all key/value
+-- pairs.  If func is not given, then the implementation will default to
+-- function(k, v) return v end - i.e. will test the truthiness of the values.
+-- @param t The table to test
+-- @param func A function that receives all key/value pairs
+-- @return A boolean value which represents whether the given function returns
+-- a truthy value for all k/v pairs.
 function all(t, func)
-    for k, v in pairs(f) do
+    func = func or value_identity
+
+    for k, v in pairs(t) do
         if not func(k, v) then
             return false
         end
