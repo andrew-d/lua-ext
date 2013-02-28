@@ -669,6 +669,14 @@ function all(t, func)
 end
 
 
+-------------------------------------------------------------------------------
+-- This function wll pass every key/value pair in the table to the given
+-- function, and will return the first pair for which the function returns a
+-- non-falsy value.
+-- @param t The table to search
+-- @param func A function that will receive key/value pairs
+-- @return The first k, v for which func(k, v) returns a non-falsy value, or
+-- nil if no non-falsy value was returned
 function detect(t, func)
     for k, v in pairs(t) do
         if func(k, v) then
@@ -680,16 +688,24 @@ function detect(t, func)
 end
 
 
+-------------------------------------------------------------------------------
+-- Removes elements from the given list-like table up to, but not including,
+-- the first element for which func(k, v) returns a falsy value.
+-- @param t The table to process
+-- @param func A function that receives key/value pairs, and returns a single
+-- value
+-- @return A new list-like table with all elements including and after the
+-- first element for which func(k, v) returns a falsy value
 function drop_while(t, func)
     local ret = {}
     local adding = false
-    for k, v in pairs(t) do
+    for k, v in ipairs(t) do
         if adding then
-            ret[k] = v
+            table.insert(ret, v)
         else
             if not func(k, v) then
                 adding = true
-                ret[k] = v
+                table.insert(ret, v)
             end
         end
     end

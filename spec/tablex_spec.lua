@@ -610,6 +610,40 @@ describe("Table extension library", function()
         end)
     end)
 
+    describe('detect', function()
+        it('will properly detect a value', function()
+            local pred = function(k, v) return k > 3 end
+
+            local k, v = tx.detect({2,3,4,5}, pred)
+            assert.equal(4, k)
+            assert.equal(5, v)
+        end)
+
+        it('will return nil if no detection', function()
+            local pred = function(k, v) return k == 10 end
+
+            local r = tx.detect({2,3}, pred)
+            assert.is_nil(r)
+        end)
+    end)
+
+    describe('drop_while', function()
+        local pred = function(k, v) return k < 3 end
+
+        it('will drop up to but not including an element', function()
+            assert.same({3, 4, 5}, tx.drop_while({1, 2, 3, 4, 5}, pred))
+        end)
+
+        it('will drop everything properly', function()
+            assert.same({}, tx.drop_while({1,2}, pred))
+        end)
+
+        it('will drop nothing properly', function()
+            local pred = function(k, v) return false end
+            assert.same({1,2,3}, tx.drop_while({1,2,3}, pred))
+        end)
+    end)
+
     describe('flatten', function()
         it('will flatten a simple list', function()
             assert.same({1,2,3,4,5}, tx.flatten({{1,2}, 3, {4}, {5}}))
