@@ -78,11 +78,13 @@
     <strong>safe_require&nbsp;(...)</strong>
     </dt>
     <dd>
-    Requires a module, returning nil if it doesn&rsquo;t exist. 
+    Requires a module, returning nil if it doesn&rsquo;t exist.   Note that this
+ differs from the regular <code>require()</code> function, which will raise an error if
+ the given module does not exist.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>...</em></code>:  The argument(s) to pass to require</li>
+       <li><code><em>...</em></code>:  The argument(s) to pass to <code>require()</code></li>
     </ul>
 
 

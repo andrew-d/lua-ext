@@ -30,6 +30,11 @@
   <li><a href="../index.html">Index</a></li>
 </ul>
 
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+</ul>
 
 
 <h2>Modules</h2>
@@ -54,11 +59,543 @@
 <p>
 </p>
 
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#call">call&nbsp;(func, ...)</a></td>
+	<td class="summary">Call a function with some arguments.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#index">index&nbsp;(tbl, key)</a></td>
+	<td class="summary">Return the given key from a table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#eq">eq&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of <code>x == y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ne">ne&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of <code>x ~= y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#lt">lt&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of <code>x &lt; y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#lte">lte&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of <code>x &lt;= y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#gt">gt&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of <code>x &gt; y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#gte">gte&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of <code>x &gt;= y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#len">len&nbsp;(x)</a></td>
+	<td class="summary">Return the length of x</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#concat">concat&nbsp;(x, y)</a></td>
+	<td class="summary">Return x concatenated with y</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#add">add&nbsp;(x, y)</a></td>
+	<td class="summary">Return <code>x + y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#sub">sub&nbsp;(x, y)</a></td>
+	<td class="summary">Return <code>x - y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mul">mul&nbsp;(x, y)</a></td>
+	<td class="summary">Return <code>x * y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#div">div&nbsp;(x, y)</a></td>
+	<td class="summary">Return <code>x / y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#pow">pow&nbsp;(x, y)</a></td>
+	<td class="summary">Return <code>x ^ y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mod">mod&nbsp;(x, y)</a></td>
+	<td class="summary">Return <code>x % y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#neg">neg&nbsp;(x)</a></td>
+	<td class="summary">Return <code>-x</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#and_">and_&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of x and y</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#or_">or_&nbsp;(x, y)</a></td>
+	<td class="summary">Return the result of <code>x or y</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#not_">not_&nbsp;(x)</a></td>
+	<td class="summary">Return <code>not x</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#nop">nop&nbsp;(...)</a></td>
+	<td class="summary">No-op function.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#table">table&nbsp;(...)</a></td>
+	<td class="summary">Table function &ndash; constructs a table from the input arguments.</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#optable">optable</a></td>
+	<td class="summary">This table contains all of the lua operator functions, keyed by a sensible
+ string representation.</td>
+	</tr>
+</table>
 
 <br/>
 <br/>
 
 
+    <h2><a name="Functions"></a>Functions</h2>
+    
+    <dl class="function">
+    <dt>
+    <a name = "call"></a>
+    <strong>call&nbsp;(func, ...)</strong>
+    </dt>
+    <dd>
+    Call a function with some arguments. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>func</em></code>: 
+</li>
+       <li><code><em>...</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "index"></a>
+    <strong>index&nbsp;(tbl, key)</strong>
+    </dt>
+    <dd>
+    Return the given key from a table. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>tbl</em></code>: 
+</li>
+       <li><code><em>key</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "eq"></a>
+    <strong>eq&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of <code>x == y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ne"></a>
+    <strong>ne&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of <code>x ~= y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "lt"></a>
+    <strong>lt&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of <code>x &lt; y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "lte"></a>
+    <strong>lte&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of <code>x &lt;= y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "gt"></a>
+    <strong>gt&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of <code>x &gt; y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "gte"></a>
+    <strong>gte&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of <code>x &gt;= y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "len"></a>
+    <strong>len&nbsp;(x)</strong>
+    </dt>
+    <dd>
+    Return the length of x 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "concat"></a>
+    <strong>concat&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return x concatenated with y 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "add"></a>
+    <strong>add&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return <code>x + y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "sub"></a>
+    <strong>sub&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return <code>x - y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mul"></a>
+    <strong>mul&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return <code>x * y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "div"></a>
+    <strong>div&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return <code>x / y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "pow"></a>
+    <strong>pow&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return <code>x ^ y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "mod"></a>
+    <strong>mod&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return <code>x % y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "neg"></a>
+    <strong>neg&nbsp;(x)</strong>
+    </dt>
+    <dd>
+    Return <code>-x</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "and_"></a>
+    <strong>and_&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of x and y 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "or_"></a>
+    <strong>or_&nbsp;(x, y)</strong>
+    </dt>
+    <dd>
+    Return the result of <code>x or y</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+       <li><code><em>y</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "not_"></a>
+    <strong>not_&nbsp;(x)</strong>
+    </dt>
+    <dd>
+    Return <code>not x</code> 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>x</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "nop"></a>
+    <strong>nop&nbsp;(...)</strong>
+    </dt>
+    <dd>
+    No-op function.   Returns exactly what is passed in.
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>...</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "table"></a>
+    <strong>table&nbsp;(...)</strong>
+    </dt>
+    <dd>
+    Table function &ndash; constructs a table from the input arguments. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>...</em></code>: 
+</li>
+    </ul>
+
+
+
+
+</dd>
+</dl>
+    <h2><a name="Tables"></a>Tables</h2>
+    
+    <dl class="function">
+    <dt>
+    <a name = "optable"></a>
+    <strong>optable</strong>
+    </dt>
+    <dd>
+    This table contains all of the lua operator functions, keyed by a sensible
+ string representation.   See the code for more details.
+
+    <h3>Fields:</h3>
+    <ul>
+       <li><code><em>num</em></code>:  The number of operations</li>
+    </ul>
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
