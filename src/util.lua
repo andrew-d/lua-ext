@@ -17,8 +17,10 @@ else
 end
 
 -------------------------------------------------------------------------------
--- Requires a module, returning nil if it doesn't exist.
--- @param ... The argument(s) to pass to require
+-- Requires a module, returning nil if it doesn't exist.  Note that this
+-- differs from the regular `require()` function, which will raise an error if
+-- the given module does not exist.
+-- @param ... The argument(s) to pass to `require()`
 -- @return The module's table, or nil if it doesn't exist
 function safe_require(...)
     local err, ret = pcall(require, ...)
