@@ -377,6 +377,7 @@ end
 -------------------------------------------------------------------------------
 -- Apply a function to all values of a table, modifying the table in-place.
 -- This is the same as the map() function, except it operates in-place.
+-- @see map
 -- @param t The table
 -- @param func A function that takes 1 or more arguments
 -- @param ... Any additional arguments to pass to the function
@@ -567,6 +568,7 @@ end
 -------------------------------------------------------------------------------
 -- This function performs the same operation as delete_if, except it does not
 -- modify the original table and instead returns a copy.
+-- @see delete_if
 -- @param t The table to delete from
 -- @param func A function that is passed the key and value, and should return
 -- true if the pair is to be deleted, or false otherwise
@@ -604,6 +606,7 @@ end
 -------------------------------------------------------------------------------
 -- This function performs the same operation as keep_if, except that it returns
 -- a new table and does not modify the original.
+-- @see keep_if
 -- @param t The table to process
 -- @param func A function that is passed the key and value, and should return
 -- true if the pair is to be kept, or false otherwise
@@ -839,7 +842,7 @@ end
 -- @param level The level to flatten to.  Use math.huge to represent "flatten
 -- everything"
 -- @return A new list-like table that has been flattened.
--- TODO: Do we make this flatten a non list-like table too?
+-- @todo Do we make this flatten a non list-like table too?
 function flatten(t, level)
     level = level or 1
     if level == 0 then return t end

@@ -22,7 +22,7 @@ def build_docs(event):
     print("Building docs at %s" % now(), file=sys.stderr)
     print("-" * 79)
     os.chdir(BASEDIR)
-    subprocess.call(r'ldoc.lua src', shell=True)
+    subprocess.call(r'ldoc.lua .', shell=True)
     print("-" * 79)
 
 
@@ -61,7 +61,7 @@ class ChangeHandler(FileSystemEventHandler):
 def main():
     while 1:
         test_handler = ChangeHandler('.lua', run_tests)
-        docs_handler = ChangeHandler('.lua', build_docs)
+        docs_handler = ChangeHandler(['.lua', '.ld'], build_docs)
 
         observer = Observer()
         observer.schedule(test_handler, BASEDIR, recursive=True)
