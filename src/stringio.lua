@@ -156,8 +156,11 @@ function StringReader:read(...)
 end
 
 
-
-
+-------------------------------------------------------------------------------
+-- Create a StringWriter instance with the given initial value (which can be
+-- nil).  The returned object wll act exactly like a file object, except that
+-- it will write to the backing string.
+-- @param initial The initial value of the StringWriter
 function create(initial)
     local t
 
@@ -171,8 +174,14 @@ function create(initial)
 end
 
 
+-------------------------------------------------------------------------------
+-- This function creates a StringReader instance with a backing string.  The
+-- returned value will act exactly like a file that can be read from, except
+-- that it will operate on the given string.
+-- @param value The string to read from
 function open(value)
     return setmetatable({str=value, offset=1}, StringReader)
 end
+
 
 return P
