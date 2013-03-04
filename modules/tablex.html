@@ -24,7 +24,7 @@
 
 <div id="navigation">
 <br/>
-<h1>ldoc</h1>
+<h1>Lua-Ext</h1>
 
 <ul>
   <li><a href="../index.html">Index</a></li>
@@ -56,14 +56,15 @@
 <h1>Module <code>tablex</code></h1>
 
 <p>A module that contains many helpful table extensions.</p>
-<p></p>
+<p>
+</p>
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#copy">copy&nbsp;(t, copy_meta)</a></td>
 	<td class="summary">Performs a shallow-copy of the given table, optionally copying the input
- table's metatable.</td>
+ table&rsquo;s metatable.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#deepcopy">deepcopy&nbsp;(t)</a></td>
@@ -260,12 +261,12 @@
     </dt>
     <dd>
     Performs a shallow-copy of the given table, optionally copying the input
- table's metatable. 
+ table&rsquo;s metatable. 
 
     <h3>Parameters:</h3>
     <ul>
        <li><code><em>t</em></code>:  The table to copy</li>
-       <li><code><em>copy_meta</em></code>:  Whether or not to copy the input table's metatable.
+       <li><code><em>copy_meta</em></code>:  Whether or not to copy the input table&rsquo;s metatable.
  Defaults to false.</li>
     </ul>
 
@@ -283,7 +284,7 @@
     </dt>
     <dd>
     Performs a deep copy of the given table, recursively copying all keys and
- values.   Will also update the new table's metatable to the original tables'.
+ values.   Will also update the new table&rsquo;s metatable to the original tables'.
 
     <h3>Parameters:</h3>
     <ul>
@@ -304,7 +305,7 @@
     </dt>
     <dd>
     Sorts a table, and then returns the new table.   Useful for chaining.  Note
- that this operation will sort the original table - i.e. it does not return
+ that this operation will sort the original table &ndash; i.e. it does not return
  a copy of the table.
 
     <h3>Parameters:</h3>
@@ -620,7 +621,7 @@
 
     <h3>Returns:</h3>
     <ol>
-        A table containing the results of applying func(t[value], ...) for
+        A table containing the results of applying func(t[value], &hellip;) for
  all values in t.
     </ol>
 
@@ -645,7 +646,7 @@
     <h3>Returns:</h3>
     <ol>
         A list-like table containing the results of applying
- func(t[value], ...) for all values in t.
+ func(t[value], &hellip;) for all values in t.
     </ol>
 
 
@@ -692,7 +693,7 @@
 
     <h3>Returns:</h3>
     <ol>
-        A table containing the results of applying func(t1[i],  t2[i], ...)
+        A table containing the results of applying func(t1[i],  t2[i], &hellip;)
  for all i.
     </ol>
 
@@ -705,17 +706,17 @@
     <dd>
     Apply a function that takes two arguments to all elements in a list-like
  table, from left to right.   This reduces the sequence to a single value.
- If the 'initial' parameter is given, then it will also act as the default
+ If the &lsquo;initial&rsquo; parameter is given, then it will also act as the default
  value if the sequence is empty.  Otherwise, if the sequence is empty and
  no initial value is given, this function will return nil.
- Note: this function is aliased as "foldl".
+ Note: this function is aliased as &ldquo;foldl&rdquo;.
 
     <h3>Parameters:</h3>
     <ul>
        <li><code><em>t</em></code>:  The table</li>
        <li><code><em>func</em></code>:  A function that takes two arguments and returns a single value</li>
        <li><code><em>initial</em></code>:  (optional) The initial value to use.  If present, this is
- placed "before" the other elements in the sequence</li>
+ placed &ldquo;before&rdquo; the other elements in the sequence</li>
     </ul>
 
 
@@ -899,7 +900,7 @@
     <dd>
     This function passes each key/value pair in the given table to func, and
  will return true if the block ever returns a truthy value.   If func is not
- given, then the implementation will default to function(k, v) return v end -
+ given, then the implementation will default to function(k, v) return v end &ndash;
  i.e. will test the truthiness of the values.
 
     <h3>Parameters:</h3>
@@ -925,7 +926,7 @@
     This function passes each key/value pair in the given table to func, and
  will return true if the block returns a truthy value for all key/value
  pairs.   If func is not given, then the implementation will default to
- function(k, v) return v end - i.e. will test the truthiness of the values.
+ function(k, v) return v end &ndash; i.e. will test the truthiness of the values.
 
     <h3>Parameters:</h3>
     <ul>
@@ -1021,7 +1022,7 @@
     </dt>
     <dd>
     This function will find the largest value in a table, comparing using the
- given function.   If not given, a function that performs "v1 < v2" will be
+ given function.   If not given, a function that performs &ldquo;v1 &lt; v2&rdquo; will be
  used instead.
 
     <h3>Parameters:</h3>
@@ -1052,7 +1053,7 @@
     <h3>Parameters:</h3>
     <ul>
        <li><code><em>t</em></code>:  The table to partition</li>
-       <li><code><em>func</em></code>:  The partitioning function - called with func(k, v), and should
+       <li><code><em>func</em></code>:  The partitioning function &ndash; called with func(k, v), and should
  return a boolean</li>
     </ul>
 
@@ -1078,7 +1079,7 @@
     <h3>Parameters:</h3>
     <ul>
        <li><code><em>t</em></code>:  The table to partition</li>
-       <li><code><em>func</em></code>:  The partitioning function - called with func(i, v), and should
+       <li><code><em>func</em></code>:  The partitioning function &ndash; called with func(i, v), and should
  return a boolean</li>
     </ul>
 
@@ -1098,14 +1099,14 @@
     <dd>
     Given a list-like table, will return a new list-like table that is flattened
  by the given level.   That is to say, for every value that is a list-like
- table, extract it's elements into the new list, to the recursive depth
+ table, extract it&rsquo;s elements into the new list, to the recursive depth
  specified.
 
     <h3>Parameters:</h3>
     <ul>
        <li><code><em>t</em></code>:  The list-like table to flatten</li>
-       <li><code><em>level</em></code>:  The level to flatten to.  Use math.huge to represent "flatten
- everything"</li>
+       <li><code><em>level</em></code>:  The level to flatten to.  Use math.huge to represent &ldquo;flatten
+ everything&rdquo;</li>
     </ul>
 
 
@@ -1123,7 +1124,7 @@
     </dt>
     <dd>
     Adds all the functions in this module to the specified table.   Note that
- we default to the 'table' table, and we exclude this function itself.
+ we default to the &lsquo;table&rsquo; table, and we exclude this function itself.
 
     <h3>Parameters:</h3>
     <ul>
@@ -1150,41 +1151,76 @@
 
     <h3>Fields:</h3>
     <ul>
-       <li><code><em>copy</em></code>: </li>
-       <li><code><em>deepcopy</em></code>: </li>
-       <li><code><em>sort</em></code>: </li>
-       <li><code><em>isempty</em></code>: </li>
-       <li><code><em>size</em></code>: </li>
-       <li><code><em>keys</em></code>: </li>
-       <li><code><em>values</em></code>: </li>
-       <li><code><em>clear</em></code>: </li>
-       <li><code><em>update</em></code>: </li>
-       <li><code><em>transpose</em></code>: </li>
-       <li><code><em>compare</em></code>: </li>
-       <li><code><em>comparei</em></code>: </li>
-       <li><code><em>compare_unordered</em></code>: </li>
-       <li><code><em>find</em></code>: </li>
-       <li><code><em>rfind</em></code>: </li>
-       <li><code><em>map</em></code>: </li>
-       <li><code><em>mapi</em></code>: </li>
-       <li><code><em>transform</em></code>: </li>
-       <li><code><em>reduce</em></code>: </li>
-       <li><code><em>zip</em></code>: </li>
-       <li><code><em>normalize_slice</em></code>: </li>
-       <li><code><em>sub</em></code>: </li>
-       <li><code><em>delete_if</em></code>: </li>
-       <li><code><em>reject</em></code>: </li>
-       <li><code><em>keep_if</em></code>: </li>
-       <li><code><em>select</em></code>: </li>
-       <li><code><em>any</em></code>: </li>
-       <li><code><em>all</em></code>: </li>
-       <li><code><em>detect</em></code>: </li>
-       <li><code><em>drop_while</em></code>: </li>
-       <li><code><em>group_by</em></code>: </li>
-       <li><code><em>max</em></code>: </li>
-       <li><code><em>partition</em></code>: </li>
-       <li><code><em>partitioni</em></code>: </li>
-       <li><code><em>flatten</em></code>: </li>
+       <li><code><em>copy</em></code>: 
+</li>
+       <li><code><em>deepcopy</em></code>: 
+</li>
+       <li><code><em>sort</em></code>: 
+</li>
+       <li><code><em>isempty</em></code>: 
+</li>
+       <li><code><em>size</em></code>: 
+</li>
+       <li><code><em>keys</em></code>: 
+</li>
+       <li><code><em>values</em></code>: 
+</li>
+       <li><code><em>clear</em></code>: 
+</li>
+       <li><code><em>update</em></code>: 
+</li>
+       <li><code><em>transpose</em></code>: 
+</li>
+       <li><code><em>compare</em></code>: 
+</li>
+       <li><code><em>comparei</em></code>: 
+</li>
+       <li><code><em>compare_unordered</em></code>: 
+</li>
+       <li><code><em>find</em></code>: 
+</li>
+       <li><code><em>rfind</em></code>: 
+</li>
+       <li><code><em>map</em></code>: 
+</li>
+       <li><code><em>mapi</em></code>: 
+</li>
+       <li><code><em>transform</em></code>: 
+</li>
+       <li><code><em>reduce</em></code>: 
+</li>
+       <li><code><em>zip</em></code>: 
+</li>
+       <li><code><em>normalize_slice</em></code>: 
+</li>
+       <li><code><em>sub</em></code>: 
+</li>
+       <li><code><em>delete_if</em></code>: 
+</li>
+       <li><code><em>reject</em></code>: 
+</li>
+       <li><code><em>keep_if</em></code>: 
+</li>
+       <li><code><em>select</em></code>: 
+</li>
+       <li><code><em>any</em></code>: 
+</li>
+       <li><code><em>all</em></code>: 
+</li>
+       <li><code><em>detect</em></code>: 
+</li>
+       <li><code><em>drop_while</em></code>: 
+</li>
+       <li><code><em>group_by</em></code>: 
+</li>
+       <li><code><em>max</em></code>: 
+</li>
+       <li><code><em>partition</em></code>: 
+</li>
+       <li><code><em>partitioni</em></code>: 
+</li>
+       <li><code><em>flatten</em></code>: 
+</li>
     </ul>
 
 

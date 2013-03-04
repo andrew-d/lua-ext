@@ -24,7 +24,7 @@
 
 <div id="navigation">
 <br/>
-<h1>ldoc</h1>
+<h1>Lua-Ext</h1>
 
 <ul>
   <li><a href="../index.html">Index</a></li>
@@ -57,7 +57,8 @@
 <h1>Module <code>platform</code></h1>
 
 <p>A module for determining information about the execution platform</p>
-<p></p>
+<p>
+</p>
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
@@ -102,9 +103,9 @@
     </dt>
     <dd>
     Returns the current execution platform. 
- Values can include "windows", "darwin", "linux", or whatever the lower-case
- version of `uname` returns.  "unknown" is returned if the output from
- `uname` is empty (e.g. in case of an error).
+ Values can include &ldquo;windows&rdquo;, &ldquo;darwin&rdquo;, &ldquo;linux&rdquo;, or whatever the lower-case
+ version of <code>uname</code> returns.  &ldquo;unknown&rdquo; is returned if the output from
+ <code>uname</code> is empty (e.g. in case of an error).
 
 
 
@@ -121,8 +122,8 @@
     </dt>
     <dd>
     Returns the current processor architecture. 
- The string returned will be one of 'x86', 'x64', 'ia64', 'unknown', or
- whatever `uname -p` returns.
+ The string returned will be one of &lsquo;x86&rsquo;, &lsquo;x64&rsquo;, &lsquo;ia64&rsquo;, &lsquo;unknown&rsquo;, or
+ whatever <code>uname -p</code> returns.
 
 
 
@@ -146,9 +147,9 @@
 
     <h3>Fields:</h3>
     <ul>
-       <li><code><em>dirsep</em></code>: -- The directory separator</li>
-       <li><code><em>pathsep</em></code>: -- The path separator</li>
-       <li><code><em>extsep</em></code>: -- The extension separator</li>
+       <li><code><em>dirsep</em></code>: &mdash; The directory separator</li>
+       <li><code><em>pathsep</em></code>: &mdash; The path separator</li>
+       <li><code><em>extsep</em></code>: &mdash; The extension separator</li>
     </ul>
 
 
@@ -176,7 +177,7 @@
     <strong>lua_version</strong>
     </dt>
     <dd>
-    The current version of Lua, as a string (e.g.  "5.1", "5.2", etc.)
+    The current version of Lua, as a string (e.g.  &ldquo;5.1&rdquo;, &ldquo;5.2&rdquo;, etc.)
 
 
 
