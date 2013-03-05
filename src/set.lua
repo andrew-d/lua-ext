@@ -23,6 +23,11 @@ else
 end
 
 
+-------------------------------------------------------------------------------
+-- Compute the set intersection between two tables.
+-- @param t A table
+-- @param other Another table
+-- @return A new table which contains the intersection between the two tables
 function intersection(t, other)
     local ret = {}
     for k, v in pairs(t) do
@@ -35,6 +40,11 @@ function intersection(t, other)
 end
 
 
+-------------------------------------------------------------------------------
+-- Compute the set union of two tables.
+-- @param t A table
+-- @param other Another table
+-- @return A new table which contains the union of the two tables
 function union(t, other)
     local ret = {}
     for k, v in pairs(t) do
@@ -48,6 +58,11 @@ function union(t, other)
 end
 
 
+-------------------------------------------------------------------------------
+-- Compute the (non-symmetric) difference of two tables.
+-- @param t A table
+-- @param other Another table
+-- @return A new table which contains the difference between the two tables
 function difference(t, other)
     local ret = {}
     for k, v in pairs(t) do
@@ -60,6 +75,12 @@ function difference(t, other)
 end
 
 
+-------------------------------------------------------------------------------
+-- Compute the symmetric difference of two tables.
+-- @param t A table
+-- @param other Another table
+-- @return A new table which contains the symmetric difference between the two
+-- tables
 function symmetric_difference(t, other)
     local ret = {}
     for k, v in pairs(t) do
@@ -77,6 +98,12 @@ function symmetric_difference(t, other)
 end
 
 
+-------------------------------------------------------------------------------
+-- Returns a boolean indicating whether the first table is a subset of the
+-- second.
+-- @param t A table
+-- @param other Another table
+-- @return A boolean value
 function issubset(t, other)
     for k, v in pairs(t) do
         if not other[k] then
@@ -88,11 +115,22 @@ function issubset(t, other)
 end
 
 
+-------------------------------------------------------------------------------
+-- Returns a boolean indicating whether the first table is disjoint with
+-- respect to the second.
+-- @param t A table
+-- @param other Another table
+-- @return A boolean value
 function isdisjoint(t, other)
     return tablex.isempty(intersection(t, other))
 end
 
 
+-------------------------------------------------------------------------------
+-- Returns a boolean indicating whether the first table is equal to the second.
+-- @param t A table
+-- @param other Another table
+-- @return A boolean value
 function equal(t, other)
     return issubset(t, other) and issubset(other, t)
 end
@@ -130,6 +168,16 @@ function Set:__tostring()
 end
 
 
+-------------------------------------------------------------------------------
+-- Create a new Set object that allows the set methods from this module to be
+-- called directly on the set.  The set itself is a table, where the keys are
+-- the values contained in the set, and the values are the boolean value
+-- `true`.  The returned Set object will also have a `tostring()` method that
+-- prints the values contained.
+-- @param input An input value to initialize the set with.  If this is a Set
+-- instance, then it will properly take the value of the set - otherwise, the
+-- input is assumed to be a list-like table, and the values in this table are
+-- added to the set.
 function makeset(input)
     local set = {}
     if input then
