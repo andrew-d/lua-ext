@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>Lua-Ext</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul>
+  <li><a href="../modules/benchmark.html">benchmark</a></li>
+  <li><a href="../modules/mathx.html">mathx</a></li>
+  <li><a href="../modules/operator.html">operator</a></li>
+  <li><a href="../modules/platform.html">platform</a></li>
+  <li><strong>set</strong></li>
+  <li><a href="../modules/stringio.html">stringio</a></li>
+  <li><a href="../modules/stringx.html">stringx</a></li>
+  <li><a href="../modules/tablex.html">tablex</a></li>
+  <li><a href="../modules/util.html">util</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>set</code></h1>
+
+<p>Set implementation for Lua</p>
+<p>
+</p>
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#intersection">intersection&nbsp;(t, other)</a></td>
+	<td class="summary">Compute the set intersection between two tables.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#union">union&nbsp;(t, other)</a></td>
+	<td class="summary">Compute the set union of two tables.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#difference">difference&nbsp;(t, other)</a></td>
+	<td class="summary">Compute the (non-symmetric) difference of two tables.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#symmetric_difference">symmetric_difference&nbsp;(t, other)</a></td>
+	<td class="summary">Compute the symmetric difference of two tables.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#issubset">issubset&nbsp;(t, other)</a></td>
+	<td class="summary">Returns a boolean indicating whether the first table is a subset of the
+ second.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#isdisjoint">isdisjoint&nbsp;(t, other)</a></td>
+	<td class="summary">Returns a boolean indicating whether the first table is disjoint with
+ respect to the second.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#equal">equal&nbsp;(t, other)</a></td>
+	<td class="summary">Returns a boolean indicating whether the first table is equal to the second.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#makeset">makeset&nbsp;(input)</a></td>
+	<td class="summary">Create a new Set object that allows the set methods from this module to be
+ called directly on the set.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2><a name="Functions"></a>Functions</h2>
+    
+    <dl class="function">
+    <dt>
+    <a name = "intersection"></a>
+    <strong>intersection&nbsp;(t, other)</strong>
+    </dt>
+    <dd>
+    Compute the set intersection between two tables. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>t</em></code>:  A table</li>
+       <li><code><em>other</em></code>:  Another table</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        A new table which contains the intersection between the two tables
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "union"></a>
+    <strong>union&nbsp;(t, other)</strong>
+    </dt>
+    <dd>
+    Compute the set union of two tables. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>t</em></code>:  A table</li>
+       <li><code><em>other</em></code>:  Another table</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        A new table which contains the union of the two tables
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "difference"></a>
+    <strong>difference&nbsp;(t, other)</strong>
+    </dt>
+    <dd>
+    Compute the (non-symmetric) difference of two tables. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>t</em></code>:  A table</li>
+       <li><code><em>other</em></code>:  Another table</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        A new table which contains the difference between the two tables
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "symmetric_difference"></a>
+    <strong>symmetric_difference&nbsp;(t, other)</strong>
+    </dt>
+    <dd>
+    Compute the symmetric difference of two tables. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>t</em></code>:  A table</li>
+       <li><code><em>other</em></code>:  Another table</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        A new table which contains the symmetric difference between the two
+ tables
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "issubset"></a>
+    <strong>issubset&nbsp;(t, other)</strong>
+    </dt>
+    <dd>
+    Returns a boolean indicating whether the first table is a subset of the
+ second. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>t</em></code>:  A table</li>
+       <li><code><em>other</em></code>:  Another table</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        A boolean value
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "isdisjoint"></a>
+    <strong>isdisjoint&nbsp;(t, other)</strong>
+    </dt>
+    <dd>
+    Returns a boolean indicating whether the first table is disjoint with
+ respect to the second. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>t</em></code>:  A table</li>
+       <li><code><em>other</em></code>:  Another table</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        A boolean value
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "equal"></a>
+    <strong>equal&nbsp;(t, other)</strong>
+    </dt>
+    <dd>
+    Returns a boolean indicating whether the first table is equal to the second. 
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>t</em></code>:  A table</li>
+       <li><code><em>other</em></code>:  Another table</li>
+    </ul>
+
+
+    <h3>Returns:</h3>
+    <ol>
+        A boolean value
+    </ol>
+
+
+</dd>
+    <dt>
+    <a name = "makeset"></a>
+    <strong>makeset&nbsp;(input)</strong>
+    </dt>
+    <dd>
+    Create a new Set object that allows the set methods from this module to be
+ called directly on the set.   The set itself is a table, where the keys are
+ the values contained in the set, and the values are the boolean value
+ <code>true</code>.  The returned Set object will also have a <code>tostring()</code> method that
+ prints the values contained.
+
+    <h3>Parameters:</h3>
+    <ul>
+       <li><code><em>input</em></code>:  An input value to initialize the set with.  If this is a Set
+ instance, then it will properly take the value of the set &ndash; otherwise, the
+ input is assumed to be a list-like table, and the values in this table are
+ added to the set.</li>
+    </ul>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.2</a></i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
