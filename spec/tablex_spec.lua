@@ -740,4 +740,17 @@ describe("Table extension library", function()
         end)
     end)
 
+    describe('shuffle', function()
+        it('will return the input table', function()
+            local t = {1,2,3}
+            assert.equal(t, tx.shuffle(t))
+        end)
+
+        it('will keep all items in the table', function()
+            local t = tx.shuffle({1,2,3})
+            local new = tx.sort(t)
+
+            assert.same({1,2,3}, new)
+        end)
+    end)
 end)

@@ -864,6 +864,22 @@ end
 
 
 -------------------------------------------------------------------------------
+-- This function will randomly shuffle the given list-like table in-place, and
+-- then return the table.
+-- @param t The list-like table to shuffle
+-- @return The input table, shuffled
+function shuffle(t)
+    local n = #t
+    for i = 1,n-1 do
+        local r = math.random(i, n)
+        t[i], t[r] = t[r], t[i]
+    end
+
+    return t
+end
+
+
+-------------------------------------------------------------------------------
 -- Adds all the functions in this module to the specified table.  Note that
 -- we default to the 'table' table, and we exclude this function itself.
 -- @param mod If given, the module to patch these functions into.  Defaults
