@@ -15,7 +15,23 @@ local version = _VERSION
 
 -- Note that we define this ahead of the below, since we need to know the
 -- version of Lua to figure out whether we need to use setfenv.
-local _lua_version = string.sub(version, 5)
+local _lua_version
+
+-- Check the lua version string - it should be in the format "Lua X.Y", where
+-- X and Y are digits.
+if string.match(_VERSION, '^Lua %d.%d$') then
+    _lua_version =  string.sub(version, 5)
+else
+    -- If we get here, it's something like, e.g. ComputerCraft, so we need to
+    -- be tricky.  A simple method to detect Lua 5.2 is hexadecimal string
+    -- escapes - in Lua 5.1, you can only write "\yyy", whereas in Lua 5.2,
+    -- you can write "\xYY".
+    if "\x41" == "A" then
+        _lua_version = '5.2'
+    else
+        _lua_version = '5.1'
+    end
+end
 
 -- No more external access after this point.
 if _lua_version == '5.2' then
@@ -28,11 +44,11 @@ end
 -- Use undocumented package.config to get directory and path separator, if
 -- available; otherwise fall back to defaults.
 local dirsep, pathsep
-if package and package.config then 
-  dirsep, pathsep = string.match(package.config, "^([^\n]+)\n([^\n]+)\n")
+if package and package.config then
+    dirsep, pathsep = string.match(package.config, "^([^\n]+)\n([^\n]+)\n")
 else
-  dirsep = '/'
-  pathsep = ';'
+    dirsep = '/'
+    pathsep = ';'
 end
 
 
@@ -51,10 +67,10 @@ is_windows = const.dirsep == '\\'
 
 is_minecraft = false
 if _type(os.version) == "function" then
-  if string.sub(os.version(),1,7) == "CraftOS" or 
-     string.sub(os.version(),1,8) == "TurtleOS" then
-    is_minecraft = true
-  end
+    if string.sub(os.version(), 1, 7) == "CraftOS" or
+        string.sub(os.version(), 1, 8) == "TurtleOS" then
+        is_minecraft = true
+    end
 end
 
 
@@ -70,7 +86,7 @@ function platform()
     end
 
     if is_minecraft then
-      return 'minecraft'
+        return 'minecraft'
     end
 
     -- Return the lower-cased output from `uname`.  The redirection means that
@@ -117,11 +133,11 @@ function architecture()
     end
 
     if is_minecraft then
-      if string.sub(os.version(),1,8) == "TurtleOS" then
-        return "turtle"
-      else
-        return "computer"
-      end
+        if string.sub(os.version(), 1, 8) == "TurtleOS" then
+            return "turtle"
+        else
+            return "computer"
+        end
     end
 
     -- For now, we just try getting the information from uname.
