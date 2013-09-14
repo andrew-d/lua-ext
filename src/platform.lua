@@ -6,6 +6,7 @@ local P = {}
 
 -- Import section:
 -- We declare everything this package needs from "outside" here.
+local _type = type
 local package = package
 local string = string
 local io = io
@@ -24,8 +25,15 @@ else
 end
 
 
--- Use undocumented package.config to get directory and path separator.
-local dirsep, pathsep = string.match(package.config, "^([^\n]+)\n([^\n]+)\n")
+-- Use undocumented package.config to get directory and path separator, if
+-- available; otherwise fall back to defaults.
+local dirsep, pathsep
+if package and package.config then 
+  dirsep, pathsep = string.match(package.config, "^([^\n]+)\n([^\n]+)\n")
+else
+  dirsep = '/'
+  pathsep = ';'
+end
 
 
 --- Platform-specific constants
@@ -41,6 +49,14 @@ const = {
 -- A constant indicating whether the current execution platform is Windows.
 is_windows = const.dirsep == '\\'
 
+is_minecraft = false
+if _type(os.version) == "function" then
+  if string.sub(os.version(),1,7) == "CraftOS" or 
+     string.sub(os.version(),1,8) == "TurtleOS" then
+    is_minecraft = true
+  end
+end
+
 
 -------------------------------------------------------------------------------
 -- Returns the current execution platform.
@@ -51,6 +67,10 @@ is_windows = const.dirsep == '\\'
 function platform()
     if is_windows then
         return 'windows'
+    end
+
+    if is_minecraft then
+      return 'minecraft'
     end
 
     -- Return the lower-cased output from `uname`.  The redirection means that
@@ -94,6 +114,14 @@ function architecture()
         end
 
         return _win_mapping[arch] or 'unknown'
+    end
+
+    if is_minecraft then
+      if string.sub(os.version(),1,8) == "TurtleOS" then
+        return "turtle"
+      else
+        return "computer"
+      end
     end
 
     -- For now, we just try getting the information from uname.
