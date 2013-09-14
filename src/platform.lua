@@ -49,7 +49,7 @@ is_windows = const.dirsep == '\\'
 -- `uname` is empty (e.g. in case of an error).
 -- @return A string indicating the current execution platform
 function platform()
-    if _is_windows then
+    if is_windows then
         return 'windows'
     end
 
@@ -86,7 +86,7 @@ local _other_mapping = {
 function architecture()
     local arch
 
-    if _is_windows then
+    if is_windows then
         -- Try WOW64 first.
         arch = os.getenv('PROCESSOR_ARCHITEW6432')
         if arch == nil then
