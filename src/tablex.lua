@@ -934,6 +934,7 @@ table_methods = {
     partition,
     partitioni,
     flatten,
+    shuffle,
 }
 
 

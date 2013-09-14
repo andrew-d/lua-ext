@@ -115,8 +115,18 @@ describe('The set module', function()
 
         it('will have a sensible string representation', function()
             local s = set.makeset({4,5,3,6})
+            local testStr = tostring(s)
+            local chars = {}
 
-            assert.equal('[3, 4, 5, 6]', tostring(s))
+            -- Note that the order is undefined, so we simply remove everything
+            -- that's not a number first, and then add to our table.
+            local digit
+            for digit in string.gmatch(testStr, '%d') do
+                table.insert(chars, digit)
+            end
+            table.sort(chars)
+
+            assert.same({'3', '4', '5', '6'}, chars)
         end)
 
         it('has appropriate metamethods', function()
