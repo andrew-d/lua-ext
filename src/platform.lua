@@ -39,7 +39,7 @@ const = {
 
 -------------------------------------------------------------------------------
 -- A constant indicating whether the current execution platform is Windows.
-is_windows = const.dirsep == '\\'
+_is_windows = const.dirsep == '\\'
 
 
 -------------------------------------------------------------------------------
