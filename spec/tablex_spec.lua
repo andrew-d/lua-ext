@@ -115,12 +115,14 @@ describe("Table extension library", function()
     describe('keys', function()
         it('will return the keys of a table', function()
             local ks = tx.keys({foo='bar', asdf='baz'})
+            table.sort(ks)
 
-            assert.same({'foo', 'asdf'}, ks)
+            assert.same({'asdf', 'foo'}, ks)
         end)
 
         it('will return the keys of a list-like table', function()
             local ks = tx.keys({1, 2})
+            table.sort(ks)
 
             assert.same({1,2}, ks)
         end)
@@ -129,12 +131,14 @@ describe("Table extension library", function()
     describe('values', function()
         it('will return the values of a table', function()
             local vs = tx.values({foo='bar', asdf='baz'})
+            table.sort(vs)
 
             assert.same({'bar', 'baz'}, vs)
         end)
 
         it('will return the values of a list-like table', function()
             local vs = tx.values({3, 4})
+            table.sort(vs)
 
             assert.same({3, 4}, vs)
         end)
