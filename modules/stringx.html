@@ -24,7 +24,7 @@
 
 <div id="navigation">
 <br/>
-<h1>Lua-Ext</h1>
+<h1>ldoc</h1>
 
 <ul>
   <li><a href="../index.html">Index</a></li>
@@ -56,8 +56,8 @@
 <h1>Module <code>stringx</code></h1>
 
 <p>A module that contains many helpful string extensions.</p>
-<p>
-</p>
+<p></p>
+
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
@@ -176,7 +176,7 @@
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#patch">patch&nbsp;()</a></td>
-	<td class="summary">Adds all the functions in this module to the &lsquo;string&rsquo; table, so they can be
+	<td class="summary">Adds all the functions in this module to the 'string' table, so they can be
  used directly on strings.</td>
 	</tr>
 </table>
@@ -186,26 +186,28 @@
 
 
     <h2><a name="Functions"></a>Functions</h2>
-    
     <dl class="function">
     <dt>
     <a name = "escape_pattern"></a>
     <strong>escape_pattern&nbsp;(s)</strong>
     </dt>
     <dd>
-    Escape a string so it can be used as a pattern. 
+    Escape a string so it can be used as a pattern.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to escape</li>
+        <li><span class="parameter">s</span>
+         The string to escape</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A string with any special characters escaped, such that it can be
  used as a pattern
     </ol>
+
+
 
 
 </dd>
@@ -214,18 +216,21 @@
     <strong>isalpha&nbsp;(s)</strong>
     </dt>
     <dd>
-    Checks if a string contains only alphabetic characters. 
+    Checks if a string contains only alphabetic characters.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -234,18 +239,21 @@
     <strong>isdigit&nbsp;(s)</strong>
     </dt>
     <dd>
-    Checks if a string contains only digits. 
+    Checks if a string contains only digits.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -254,18 +262,21 @@
     <strong>isalnum&nbsp;(s)</strong>
     </dt>
     <dd>
-    Checks if a string contains only alphanumeric characters. 
+    Checks if a string contains only alphanumeric characters.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -274,18 +285,21 @@
     <strong>isspace&nbsp;(s)</strong>
     </dt>
     <dd>
-    Checks if a string contains only spaces. 
+    Checks if a string contains only spaces.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -294,18 +308,21 @@
     <strong>islower&nbsp;(s)</strong>
     </dt>
     <dd>
-    Checks if a string contains only lower-case characters. 
+    Checks if a string contains only lower-case characters.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -314,18 +331,21 @@
     <strong>isupper&nbsp;(s)</strong>
     </dt>
     <dd>
-    Checks if a string contains only upper-case characters. 
+    Checks if a string contains only upper-case characters.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -334,19 +354,23 @@
     <strong>at&nbsp;(s, i)</strong>
     </dt>
     <dd>
-    Return the single character at the given index. 
+    Return the single character at the given index.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string</li>
-       <li><code><em>i</em></code>:  The index</li>
+        <li><span class="parameter">s</span>
+         The string</li>
+        <li><span class="parameter">i</span>
+         The index</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A string of length 1 if successful, otherwise an empty string
     </ol>
+
+
 
 
 </dd>
@@ -355,21 +379,26 @@
     <strong>shorten&nbsp;(s, len, show_tail)</strong>
     </dt>
     <dd>
-    Shortens a string to a given length, adding dots if necessary. 
+    Shortens a string to a given length, adding dots if necessary.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to shorten</li>
-       <li><code><em>len</em></code>:  The maximum length to show</li>
-       <li><code><em>show_tail</em></code>:  Boolean indicating whether to show the start or end of the
+        <li><span class="parameter">s</span>
+         The string to shorten</li>
+        <li><span class="parameter">len</span>
+         The maximum length to show</li>
+        <li><span class="parameter">show_tail</span>
+         Boolean indicating whether to show the start or end of the
  string (defaults to false, indicating show the start)</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A string of maximum length len
     </ol>
+
+
 
 
 </dd>
@@ -378,18 +407,21 @@
     <strong>capitalize&nbsp;(s)</strong>
     </dt>
     <dd>
-    Capitalize the first word in a string. 
+    Capitalize the first word in a string.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to capitalize</li>
+        <li><span class="parameter">s</span>
+         The string to capitalize</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The string, with the first letter capitalized
     </ol>
+
+
 
 
 </dd>
@@ -398,19 +430,23 @@
     <strong>chomp&nbsp;(s, final)</strong>
     </dt>
     <dd>
-    Strip a final value (default: newlines) from the end of a string 
+    Strip a final value (default: newlines) from the end of a string
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to chomp</li>
-       <li><code><em>final</em></code>:  The value to remove from the end of s</li>
+        <li><span class="parameter">s</span>
+         The string to chomp</li>
+        <li><span class="parameter">final</span>
+         The value to remove from the end of s</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The string, with any final characters removed
     </ol>
+
+
 
 
 </dd>
@@ -424,14 +460,17 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to chop</li>
+        <li><span class="parameter">s</span>
+         The string to chop</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The string, with the final character (or newline pair) removed
     </ol>
+
+
 
 
 </dd>
@@ -440,19 +479,23 @@
     <strong>delete&nbsp;(s, substr)</strong>
     </dt>
     <dd>
-    Remove all characters given from the string. 
+    Remove all characters given from the string.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to delete from</li>
-       <li><code><em>substr</em></code>:  Either a list-like table of strings or single string to remove</li>
+        <li><span class="parameter">s</span>
+         The string to delete from</li>
+        <li><span class="parameter">substr</span>
+         Either a list-like table of strings or single string to remove</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The string with all input strings removed
     </ol>
+
+
 
 
 </dd>
@@ -461,19 +504,23 @@
     <strong>lstrip&nbsp;(s, chars)</strong>
     </dt>
     <dd>
-    Remove leading characters from a string, as given by the chars pattern. 
+    Remove leading characters from a string, as given by the chars pattern.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to strip</li>
-       <li><code><em>chars</em></code>:  The pattern used to look for leading characters (default: %s+)</li>
+        <li><span class="parameter">s</span>
+         The string to strip</li>
+        <li><span class="parameter">chars</span>
+         The pattern used to look for leading characters (default: %s+)</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A string with leading characters matching the pattern removed
     </ol>
+
+
 
 
 </dd>
@@ -482,19 +529,23 @@
     <strong>rstrip&nbsp;(s, chars)</strong>
     </dt>
     <dd>
-    Remove trailing characters from a string, as given by the chars pattern. 
+    Remove trailing characters from a string, as given by the chars pattern.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to strip</li>
-       <li><code><em>chars</em></code>:  The pattern used to look for trailing characters (default: %s+)</li>
+        <li><span class="parameter">s</span>
+         The string to strip</li>
+        <li><span class="parameter">chars</span>
+         The pattern used to look for trailing characters (default: %s+)</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A string with trailing characters matching the pattern removed
     </ol>
+
+
 
 
 </dd>
@@ -504,21 +555,25 @@
     </dt>
     <dd>
     Remove leading and trailing characters from a string, as given by the chars
- pattern. 
+ pattern.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to strip</li>
-       <li><code><em>chars</em></code>:  The pattern used to look for leading and trailing characters
+        <li><span class="parameter">s</span>
+         The string to strip</li>
+        <li><span class="parameter">chars</span>
+         The pattern used to look for leading and trailing characters
  (default: %s+)</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A string with leading and trailing characters matching the pattern
  removed
     </ol>
+
+
 
 
 </dd>
@@ -527,21 +582,27 @@
     <strong>lfind&nbsp;(s, sub, first, last)</strong>
     </dt>
     <dd>
-    Finds the index of the first instance of sub in s 
+    Finds the index of the first instance of sub in s
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to search</li>
-       <li><code><em>sub</em></code>:  The string to search for</li>
-       <li><code><em>first</em></code>:  The start index</li>
-       <li><code><em>last</em></code>:   The last index</li>
+        <li><span class="parameter">s</span>
+         The string to search</li>
+        <li><span class="parameter">sub</span>
+         The string to search for</li>
+        <li><span class="parameter">first</span>
+         The start index</li>
+        <li><span class="parameter">last</span>
+          The last index</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The index of the first instance, or nil if not found
     </ol>
+
+
 
 
 </dd>
@@ -550,21 +611,27 @@
     <strong>rfind&nbsp;(s, sub, first, last)</strong>
     </dt>
     <dd>
-    Finds the index of the last instance of sub in s 
+    Finds the index of the last instance of sub in s
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to search</li>
-       <li><code><em>sub</em></code>:  The string to search for</li>
-       <li><code><em>first</em></code>:  The start index</li>
-       <li><code><em>last</em></code>:   The last index</li>
+        <li><span class="parameter">s</span>
+         The string to search</li>
+        <li><span class="parameter">sub</span>
+         The string to search for</li>
+        <li><span class="parameter">first</span>
+         The start index</li>
+        <li><span class="parameter">last</span>
+          The last index</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The index of the last instance, or nil if not found
     </ol>
+
+
 
 
 </dd>
@@ -573,22 +640,28 @@
     <strong>replace&nbsp;(s, old, new, count)</strong>
     </dt>
     <dd>
-    Replaces all instances of substring old replaced by new. 
+    Replaces all instances of substring old replaced by new.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to search</li>
-       <li><code><em>old</em></code>:  The substring to search for</li>
-       <li><code><em>new</em></code>:  The substring to replace with</li>
-       <li><code><em>count</em></code>:  (optional) If given, this function will only perform this
+        <li><span class="parameter">s</span>
+         The string to search</li>
+        <li><span class="parameter">old</span>
+         The substring to search for</li>
+        <li><span class="parameter">new</span>
+         The substring to replace with</li>
+        <li><span class="parameter">count</span>
+         (optional) If given, this function will only perform this
  number of replacements.</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         The new string
     </ol>
+
+
 
 
 </dd>
@@ -597,21 +670,27 @@
     <strong>endswith&nbsp;(s, suffix, start, fin)</strong>
     </dt>
     <dd>
-    Returns true if s ends with the specified suffix, false otherwise. 
+    Returns true if s ends with the specified suffix, false otherwise.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
-       <li><code><em>suffix</em></code>:  A string or list-like table of suffixes to check</li>
-       <li><code><em>start</em></code>:  (optional) The index to start checking at.  Defaults to 1</li>
-       <li><code><em>fin</em></code>:  (optional) The index to stop checking at.  Defaults to #s</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
+        <li><span class="parameter">suffix</span>
+         A string or list-like table of suffixes to check</li>
+        <li><span class="parameter">start</span>
+         (optional) The index to start checking at.  Defaults to 1</li>
+        <li><span class="parameter">fin</span>
+         (optional) The index to stop checking at.  Defaults to #s</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -620,21 +699,27 @@
     <strong>startswith&nbsp;(s, suffix, start, fin)</strong>
     </dt>
     <dd>
-    Returns true if s starts with the specified suffix, false otherwise. 
+    Returns true if s starts with the specified suffix, false otherwise.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
-       <li><code><em>suffix</em></code>:  A string or list-like table of suffixes to check</li>
-       <li><code><em>start</em></code>:  (optional) The index to start checking at.  Defaults to 1</li>
-       <li><code><em>fin</em></code>:  (optional) The index to stop checking at.  Defaults to #s</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
+        <li><span class="parameter">suffix</span>
+         A string or list-like table of suffixes to check</li>
+        <li><span class="parameter">start</span>
+         (optional) The index to start checking at.  Defaults to 1</li>
+        <li><span class="parameter">fin</span>
+         (optional) The index to stop checking at.  Defaults to #s</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         true or false
     </ol>
+
+
 
 
 </dd>
@@ -644,21 +729,27 @@
     </dt>
     <dd>
     Returns the number of occurences of the substring substr in the string given
- by s[start:fin]. 
+ by s[start:fin].
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to check</li>
-       <li><code><em>substr</em></code>:  The substring to search for</li>
-       <li><code><em>start</em></code>:  The index at which to start searching (defaults to 1)</li>
-       <li><code><em>fin</em></code>:  The index at which to finish searching (defaults to #s)</li>
+        <li><span class="parameter">s</span>
+         The string to check</li>
+        <li><span class="parameter">substr</span>
+         The substring to search for</li>
+        <li><span class="parameter">start</span>
+         The index at which to start searching (defaults to 1)</li>
+        <li><span class="parameter">fin</span>
+         The index at which to finish searching (defaults to #s)</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A number indicating the number of times the substring was found
     </ol>
+
+
 
 
 </dd>
@@ -673,17 +764,23 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to partition</li>
-       <li><code><em>sep</em></code>:  The separator to partition by</li>
+        <li><span class="parameter">s</span>
+         The string to partition</li>
+        <li><span class="parameter">sep</span>
+         The separator to partition by</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
-        <li>The part before the separator, or the full string if no match</li>
-        <li>The separator, or a blank string if not found</li>
-        <li>The part after the separator, or a blank string if not found</li>
+        <li>
+        The part before the separator, or the full string if no match</li>
+        <li>
+        The separator, or a blank string if not found</li>
+        <li>
+        The part after the separator, or a blank string if not found</li>
     </ol>
+
+
 
 
 </dd>
@@ -698,17 +795,23 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to partition</li>
-       <li><code><em>sep</em></code>:  The separator to partition by</li>
+        <li><span class="parameter">s</span>
+         The string to partition</li>
+        <li><span class="parameter">sep</span>
+         The separator to partition by</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
-        <li>The part before the separator, or the full string if no match</li>
-        <li>The separator, or a blank string if not found</li>
-        <li>The part after the separator, or a blank string if not found</li>
+        <li>
+        The part before the separator, or the full string if no match</li>
+        <li>
+        The separator, or a blank string if not found</li>
+        <li>
+        The part after the separator, or a blank string if not found</li>
     </ol>
+
+
 
 
 </dd>
@@ -717,20 +820,25 @@
     <strong>ljust&nbsp;(s, i, padstr)</strong>
     </dt>
     <dd>
-    Left-justifies the string to the given width. 
+    Left-justifies the string to the given width.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to left-justify</li>
-       <li><code><em>i</em></code>:  The width to justify to</li>
-       <li><code><em>padstr</em></code>:  The padding string to use (defaults to &lsquo; &rsquo;)</li>
+        <li><span class="parameter">s</span>
+         The string to left-justify</li>
+        <li><span class="parameter">i</span>
+         The width to justify to</li>
+        <li><span class="parameter">padstr</span>
+         The padding string to use (defaults to ' ')</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The newly justified string
     </ol>
+
+
 
 
 </dd>
@@ -739,20 +847,25 @@
     <strong>rjust&nbsp;(s, i, padstr)</strong>
     </dt>
     <dd>
-    Right-justifies the string to the given width. 
+    Right-justifies the string to the given width.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to right-justify</li>
-       <li><code><em>i</em></code>:  The width to justify to</li>
-       <li><code><em>padstr</em></code>:  The padding string to use (defaults to &lsquo; &rsquo;)</li>
+        <li><span class="parameter">s</span>
+         The string to right-justify</li>
+        <li><span class="parameter">i</span>
+         The width to justify to</li>
+        <li><span class="parameter">padstr</span>
+         The padding string to use (defaults to ' ')</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The newly justified string
     </ol>
+
+
 
 
 </dd>
@@ -766,9 +879,12 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>s</em></code>:  The string to pad</li>
-       <li><code><em>width</em></code>:  The width to pad to</li>
+        <li><span class="parameter">s</span>
+         The string to pad</li>
+        <li><span class="parameter">width</span>
+         The width to pad to</li>
     </ul>
+
 
 
 
@@ -779,8 +895,9 @@
     <strong>patch&nbsp;()</strong>
     </dt>
     <dd>
-    Adds all the functions in this module to the &lsquo;string&rsquo; table, so they can be
+    Adds all the functions in this module to the 'string' table, so they can be
  used directly on strings.   Note that we exclude this function itself.
+
 
 
 
@@ -793,7 +910,7 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.2</a></i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

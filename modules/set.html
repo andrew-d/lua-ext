@@ -24,7 +24,7 @@
 
 <div id="navigation">
 <br/>
-<h1>Lua-Ext</h1>
+<h1>ldoc</h1>
 
 <ul>
   <li><a href="../index.html">Index</a></li>
@@ -56,8 +56,8 @@
 <h1>Module <code>set</code></h1>
 
 <p>Set implementation for Lua</p>
-<p>
-</p>
+<p></p>
+
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
@@ -103,26 +103,29 @@
 
 
     <h2><a name="Functions"></a>Functions</h2>
-    
     <dl class="function">
     <dt>
     <a name = "intersection"></a>
     <strong>intersection&nbsp;(t, other)</strong>
     </dt>
     <dd>
-    Compute the set intersection between two tables. 
+    Compute the set intersection between two tables.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A table</li>
-       <li><code><em>other</em></code>:  Another table</li>
+        <li><span class="parameter">t</span>
+         A table</li>
+        <li><span class="parameter">other</span>
+         Another table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A new table which contains the intersection between the two tables
     </ol>
+
+
 
 
 </dd>
@@ -131,19 +134,23 @@
     <strong>union&nbsp;(t, other)</strong>
     </dt>
     <dd>
-    Compute the set union of two tables. 
+    Compute the set union of two tables.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A table</li>
-       <li><code><em>other</em></code>:  Another table</li>
+        <li><span class="parameter">t</span>
+         A table</li>
+        <li><span class="parameter">other</span>
+         Another table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A new table which contains the union of the two tables
     </ol>
+
+
 
 
 </dd>
@@ -152,19 +159,23 @@
     <strong>difference&nbsp;(t, other)</strong>
     </dt>
     <dd>
-    Compute the (non-symmetric) difference of two tables. 
+    Compute the (non-symmetric) difference of two tables.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A table</li>
-       <li><code><em>other</em></code>:  Another table</li>
+        <li><span class="parameter">t</span>
+         A table</li>
+        <li><span class="parameter">other</span>
+         Another table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A new table which contains the difference between the two tables
     </ol>
+
+
 
 
 </dd>
@@ -173,20 +184,24 @@
     <strong>symmetric_difference&nbsp;(t, other)</strong>
     </dt>
     <dd>
-    Compute the symmetric difference of two tables. 
+    Compute the symmetric difference of two tables.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A table</li>
-       <li><code><em>other</em></code>:  Another table</li>
+        <li><span class="parameter">t</span>
+         A table</li>
+        <li><span class="parameter">other</span>
+         Another table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A new table which contains the symmetric difference between the two
  tables
     </ol>
+
+
 
 
 </dd>
@@ -196,19 +211,23 @@
     </dt>
     <dd>
     Returns a boolean indicating whether the first table is a subset of the
- second. 
+ second.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A table</li>
-       <li><code><em>other</em></code>:  Another table</li>
+        <li><span class="parameter">t</span>
+         A table</li>
+        <li><span class="parameter">other</span>
+         Another table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A boolean value
     </ol>
+
+
 
 
 </dd>
@@ -218,19 +237,23 @@
     </dt>
     <dd>
     Returns a boolean indicating whether the first table is disjoint with
- respect to the second. 
+ respect to the second.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A table</li>
-       <li><code><em>other</em></code>:  Another table</li>
+        <li><span class="parameter">t</span>
+         A table</li>
+        <li><span class="parameter">other</span>
+         Another table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A boolean value
     </ol>
+
+
 
 
 </dd>
@@ -239,19 +262,23 @@
     <strong>equal&nbsp;(t, other)</strong>
     </dt>
     <dd>
-    Returns a boolean indicating whether the first table is equal to the second. 
+    Returns a boolean indicating whether the first table is equal to the second.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A table</li>
-       <li><code><em>other</em></code>:  Another table</li>
+        <li><span class="parameter">t</span>
+         A table</li>
+        <li><span class="parameter">other</span>
+         Another table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A boolean value
     </ol>
+
+
 
 
 </dd>
@@ -263,16 +290,18 @@
     Create a new Set object that allows the set methods from this module to be
  called directly on the set.   The set itself is a table, where the keys are
  the values contained in the set, and the values are the boolean value
- <code>true</code>.  The returned Set object will also have a <code>tostring()</code> method that
+ `true`.  The returned Set object will also have a `tostring()` method that
  prints the values contained.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>input</em></code>:  An input value to initialize the set with.  If this is a Set
- instance, then it will properly take the value of the set &ndash; otherwise, the
+        <li><span class="parameter">input</span>
+         An input value to initialize the set with.  If this is a Set
+ instance, then it will properly take the value of the set - otherwise, the
  input is assumed to be a list-like table, and the values in this table are
  added to the set.</li>
     </ul>
+
 
 
 
@@ -284,7 +313,7 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.2</a></i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

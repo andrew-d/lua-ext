@@ -24,7 +24,7 @@
 
 <div id="navigation">
 <br/>
-<h1>Lua-Ext</h1>
+<h1>ldoc</h1>
 
 <ul>
   <li><a href="../index.html">Index</a></li>
@@ -57,15 +57,15 @@
 <h1>Module <code>tablex</code></h1>
 
 <p>A module that contains many helpful table extensions.</p>
-<p>
-</p>
+<p></p>
+
 
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#copy">copy&nbsp;(t, copy_meta)</a></td>
 	<td class="summary">Performs a shallow-copy of the given table, optionally copying the input
- table&rsquo;s metatable.</td>
+ table's metatable.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#deepcopy">deepcopy&nbsp;(t)</a></td>
@@ -259,7 +259,6 @@
 
 
     <h2><a name="Functions"></a>Functions</h2>
-    
     <dl class="function">
     <dt>
     <a name = "copy"></a>
@@ -267,20 +266,24 @@
     </dt>
     <dd>
     Performs a shallow-copy of the given table, optionally copying the input
- table&rsquo;s metatable. 
+ table's metatable.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to copy</li>
-       <li><code><em>copy_meta</em></code>:  Whether or not to copy the input table&rsquo;s metatable.
+        <li><span class="parameter">t</span>
+         The table to copy</li>
+        <li><span class="parameter">copy_meta</span>
+         Whether or not to copy the input table's metatable.
  Defaults to false.</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A copy of t.
     </ol>
+
+
 
 
 </dd>
@@ -290,18 +293,21 @@
     </dt>
     <dd>
     Performs a deep copy of the given table, recursively copying all keys and
- values.   Will also update the new table&rsquo;s metatable to the original tables'.
+ values.   Will also update the new table's metatable to the original tables'.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to copy</li>
+        <li><span class="parameter">t</span>
+         The table to copy</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A deep copy of t.
     </ol>
+
+
 
 
 </dd>
@@ -311,20 +317,24 @@
     </dt>
     <dd>
     Sorts a table, and then returns the new table.   Useful for chaining.  Note
- that this operation will sort the original table &ndash; i.e. it does not return
+ that this operation will sort the original table - i.e. it does not return
  a copy of the table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to sort</li>
-       <li><code><em>func</em></code>:  A comparator function</li>
+        <li><span class="parameter">t</span>
+         The table to sort</li>
+        <li><span class="parameter">func</span>
+         A comparator function</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A sorted version of t
     </ol>
+
+
 
 
 </dd>
@@ -338,14 +348,17 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to check</li>
+        <li><span class="parameter">t</span>
+         The table to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A boolean value indicating whether the table is empty
     </ol>
+
+
 
 
 </dd>
@@ -359,14 +372,17 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to check</li>
+        <li><span class="parameter">t</span>
+         The table to check</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         An integer that represents the size of the table
     </ol>
+
+
 
 
 </dd>
@@ -375,18 +391,21 @@
     <strong>keys&nbsp;(t)</strong>
     </dt>
     <dd>
-    Returns a list of the keys in a table. 
+    Returns a list of the keys in a table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table</li>
+        <li><span class="parameter">t</span>
+         The table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The input table, cleared
     </ol>
+
+
 
 
 </dd>
@@ -395,18 +414,21 @@
     <strong>values&nbsp;(t)</strong>
     </dt>
     <dd>
-    Returns a list of the values in a table. 
+    Returns a list of the values in a table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table</li>
+        <li><span class="parameter">t</span>
+         The table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A list-like table representing the values found in t
     </ol>
+
+
 
 
 </dd>
@@ -415,18 +437,21 @@
     <strong>clear&nbsp;(t)</strong>
     </dt>
     <dd>
-    Clears the input table. 
+    Clears the input table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to clear</li>
+        <li><span class="parameter">t</span>
+         The table to clear</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The original table passed in, which is now empty
     </ol>
+
+
 
 
 </dd>
@@ -435,19 +460,23 @@
     <strong>update&nbsp;(t, u)</strong>
     </dt>
     <dd>
-    Copy one table into another, in-place. 
+    Copy one table into another, in-place.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to copy into</li>
-       <li><code><em>u</em></code>:  The table to copy from</li>
+        <li><span class="parameter">t</span>
+         The table to copy into</li>
+        <li><span class="parameter">u</span>
+         The table to copy from</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The original table t
     </ol>
+
+
 
 
 </dd>
@@ -456,20 +485,25 @@
     <strong>range&nbsp;(start, fin, step)</strong>
     </dt>
     <dd>
-    Generate a table of all numbers in a range. 
+    Generate a table of all numbers in a range.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>start</em></code>:  The start index</li>
-       <li><code><em>fin</em></code>:    The number to end at</li>
-       <li><code><em>step</em></code>:   The step size, which can be negative (default: 1)</li>
+        <li><span class="parameter">start</span>
+         The start index</li>
+        <li><span class="parameter">fin</span>
+           The number to end at</li>
+        <li><span class="parameter">step</span>
+          The step size, which can be negative (default: 1)</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A list-like table of numbers
     </ol>
+
+
 
 
 </dd>
@@ -478,18 +512,21 @@
     <strong>transpose&nbsp;(t)</strong>
     </dt>
     <dd>
-    Transpose the table, swapping keys and values. 
+    Transpose the table, swapping keys and values.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to transpose</li>
+        <li><span class="parameter">t</span>
+         The table to transpose</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A copy of the table, with the keys and values transposes
     </ol>
+
+
 
 
 </dd>
@@ -498,21 +535,26 @@
     <strong>compare&nbsp;(t, t2, cmp)</strong>
     </dt>
     <dd>
-    Compare two tables using a given comparison function. 
+    Compare two tables using a given comparison function.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to compare</li>
-       <li><code><em>t2</em></code>:  The table to compare against</li>
-       <li><code><em>cmp</em></code>:  The comparison function.  Should return a truthy value of two
+        <li><span class="parameter">t</span>
+         The table to compare</li>
+        <li><span class="parameter">t2</span>
+         The table to compare against</li>
+        <li><span class="parameter">cmp</span>
+         The comparison function.  Should return a truthy value of two
  table values are equal.</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A boolean indicating whether the two tables are equal.
     </ol>
+
+
 
 
 </dd>
@@ -521,21 +563,26 @@
     <strong>comparei&nbsp;(t, t2, cmp)</strong>
     </dt>
     <dd>
-    Compare two list-like tables using a given comparison function. 
+    Compare two list-like tables using a given comparison function.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The list-like table to compare</li>
-       <li><code><em>t2</em></code>:  The list-like table to compare against</li>
-       <li><code><em>cmp</em></code>:  The comparison function.  Should return a truthy value of two
+        <li><span class="parameter">t</span>
+         The list-like table to compare</li>
+        <li><span class="parameter">t2</span>
+         The list-like table to compare against</li>
+        <li><span class="parameter">cmp</span>
+         The comparison function.  Should return a truthy value of two
  table values are equal.</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A boolean indicating whether the two tables are equal.
     </ol>
+
+
 
 
 </dd>
@@ -545,21 +592,26 @@
     </dt>
     <dd>
     Compare two list-like tables using a given comparison function, without
- caring about element order. 
+ caring about element order.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The list-like table to compare</li>
-       <li><code><em>t2</em></code>:  The list-like table to compare against</li>
-       <li><code><em>cmp</em></code>:  The comparison function.  Should return a truthy value of two
+        <li><span class="parameter">t</span>
+         The list-like table to compare</li>
+        <li><span class="parameter">t2</span>
+         The list-like table to compare against</li>
+        <li><span class="parameter">cmp</span>
+         The comparison function.  Should return a truthy value of two
  table values are equal.</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A boolean indicating whether the two tables are equal.
     </ol>
+
+
 
 
 </dd>
@@ -568,21 +620,26 @@
     <strong>find&nbsp;(t, val, start)</strong>
     </dt>
     <dd>
-    Returns the index of the first value in a list-like table. 
+    Returns the index of the first value in a list-like table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The list-like table to search</li>
-       <li><code><em>val</em></code>:  The value to search for</li>
-       <li><code><em>start</em></code>:  The starting index to search at.  Negative indexes are taken
+        <li><span class="parameter">t</span>
+         The list-like table to search</li>
+        <li><span class="parameter">val</span>
+         The value to search for</li>
+        <li><span class="parameter">start</span>
+         The starting index to search at.  Negative indexes are taken
  from the end of the list (defaults to 1).</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         An integer index if found, or nil otherwise
     </ol>
+
+
 
 
 </dd>
@@ -591,21 +648,26 @@
     <strong>rfind&nbsp;(t, val, start)</strong>
     </dt>
     <dd>
-    Returns the index of the last value in a list-like table. 
+    Returns the index of the last value in a list-like table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The list-like table to search</li>
-       <li><code><em>val</em></code>:  The value to search for</li>
-       <li><code><em>start</em></code>:  The starting index to search at.  Negative indexes are taken
+        <li><span class="parameter">t</span>
+         The list-like table to search</li>
+        <li><span class="parameter">val</span>
+         The value to search for</li>
+        <li><span class="parameter">start</span>
+         The starting index to search at.  Negative indexes are taken
  from the end of the list (defaults to 1).</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         An integer index if found, or nil otherwise
     </ol>
+
+
 
 
 </dd>
@@ -614,22 +676,27 @@
     <strong>map&nbsp;(t, func, ...)</strong>
     </dt>
     <dd>
-    Apply a function to all values of a table, returning a table of the results. 
+    Apply a function to all values of a table, returning a table of the results.
  This function will copy the metatable of the input table to the output.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table</li>
-       <li><code><em>func</em></code>:  A function that takes 1 or more arguments</li>
-       <li><code><em>...</em></code>:  Any additional arguments to pass to the function</li>
+        <li><span class="parameter">t</span>
+         The table</li>
+        <li><span class="parameter">func</span>
+         A function that takes 1 or more arguments</li>
+        <li><span class="parameter">...</span>
+         Any additional arguments to pass to the function</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
-        A table containing the results of applying func(t[value], &hellip;) for
+
+        A table containing the results of applying func(t[value], ...) for
  all values in t.
     </ol>
+
+
 
 
 </dd>
@@ -639,21 +706,26 @@
     </dt>
     <dd>
     Apply a function to all values in a list-like table, returning a list-like
- table of the results. 
+ table of the results.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The list-like table</li>
-       <li><code><em>func</em></code>:  A function that takes 1 or more arguments</li>
-       <li><code><em>...</em></code>:  Any additional arguments to pass to the function</li>
+        <li><span class="parameter">t</span>
+         The list-like table</li>
+        <li><span class="parameter">func</span>
+         A function that takes 1 or more arguments</li>
+        <li><span class="parameter">...</span>
+         Any additional arguments to pass to the function</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A list-like table containing the results of applying
- func(t[value], &hellip;) for all values in t.
+ func(t[value], ...) for all values in t.
     </ol>
+
+
 
 
 </dd>
@@ -662,19 +734,22 @@
     <strong>transform&nbsp;(t, func, ...)</strong>
     </dt>
     <dd>
-    Apply a function to all values of a table, modifying the table in-place. 
+    Apply a function to all values of a table, modifying the table in-place.
  This is the same as the map() function, except it operates in-place.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table</li>
-       <li><code><em>func</em></code>:  A function that takes 1 or more arguments</li>
-       <li><code><em>...</em></code>:  Any additional arguments to pass to the function</li>
+        <li><span class="parameter">t</span>
+         The table</li>
+        <li><span class="parameter">func</span>
+         A function that takes 1 or more arguments</li>
+        <li><span class="parameter">...</span>
+         Any additional arguments to pass to the function</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The original table, t
     </ol>
 
@@ -683,6 +758,8 @@
     <ul>
          <a href="../modules/tablex.html#map">map</a>
     </ul>
+
+
 </dd>
     <dt>
     <a name = "mapn"></a>
@@ -695,17 +772,21 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>func</em></code>:  A function that takes a number of arguments equal to the number
+        <li><span class="parameter">func</span>
+         A function that takes a number of arguments equal to the number
  of tables that were passed in.</li>
-       <li><code><em>...</em></code>:  Any number of tables passed.</li>
+        <li><span class="parameter">...</span>
+         Any number of tables passed.</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
-        A table containing the results of applying func(t1[i],  t2[i], &hellip;)
+
+        A table containing the results of applying func(t1[i],  t2[i], ...)
  for all i.
     </ol>
+
+
 
 
 </dd>
@@ -716,24 +797,29 @@
     <dd>
     Apply a function that takes two arguments to all elements in a list-like
  table, from left to right.   This reduces the sequence to a single value.
- If the &lsquo;initial&rsquo; parameter is given, then it will also act as the default
+ If the 'initial' parameter is given, then it will also act as the default
  value if the sequence is empty.  Otherwise, if the sequence is empty and
  no initial value is given, this function will return nil.
- Note: this function is aliased as &ldquo;foldl&rdquo;.
+ Note: this function is aliased as "foldl".
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table</li>
-       <li><code><em>func</em></code>:  A function that takes two arguments and returns a single value</li>
-       <li><code><em>initial</em></code>:  (optional) The initial value to use.  If present, this is
- placed &ldquo;before&rdquo; the other elements in the sequence</li>
+        <li><span class="parameter">t</span>
+         The table</li>
+        <li><span class="parameter">func</span>
+         A function that takes two arguments and returns a single value</li>
+        <li><span class="parameter">initial</span>
+         (optional) The initial value to use.  If present, this is
+ placed "before" the other elements in the sequence</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The result of the reduce operation.
     </ol>
+
+
 
 
 </dd>
@@ -748,15 +834,19 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The first table</li>
-       <li><code><em>t2</em></code>:  The second table</li>
+        <li><span class="parameter">t</span>
+         The first table</li>
+        <li><span class="parameter">t2</span>
+         The second table</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The zipped table, as above.
     </ol>
+
+
 
 
 </dd>
@@ -772,15 +862,19 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The first table</li>
-       <li><code><em>...</em></code>:  Any number of additional tables to zip.</li>
+        <li><span class="parameter">t</span>
+         The first table</li>
+        <li><span class="parameter">...</span>
+         Any number of additional tables to zip.</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The zipped table, as above.
     </ol>
+
+
 
 
 </dd>
@@ -789,22 +883,27 @@
     <strong>sub&nbsp;(t, start, fin)</strong>
     </dt>
     <dd>
-    Extract a range of values from a list-like table. 
+    Extract a range of values from a list-like table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  A list-like table</li>
-       <li><code><em>start</em></code>:  If given, the start index.  Defaults to 1, negative indexes are
+        <li><span class="parameter">t</span>
+         A list-like table</li>
+        <li><span class="parameter">start</span>
+         If given, the start index.  Defaults to 1, negative indexes are
  from the end of the table.</li>
-       <li><code><em>fin</em></code>:  If given, the end index.  Defaults to #t, negative indexes are
+        <li><span class="parameter">fin</span>
+         If given, the end index.  Defaults to #t, negative indexes are
  from the end of the table.</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A list-like table with the contents of the specified slice.
     </ol>
+
+
 
 
 </dd>
@@ -814,20 +913,24 @@
     </dt>
     <dd>
     This function deletes every key-value pair from the given table for which
- the provided function returns true. 
+ the provided function returns true.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to delete from</li>
-       <li><code><em>func</em></code>:  A function that is passed the key and value, and should return
+        <li><span class="parameter">t</span>
+         The table to delete from</li>
+        <li><span class="parameter">func</span>
+         A function that is passed the key and value, and should return
  true if the pair is to be deleted, or false otherwise</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         The original table
     </ol>
+
+
 
 
 </dd>
@@ -837,18 +940,20 @@
     </dt>
     <dd>
     This function performs the same operation as delete_if, except it does not
- modify the original table and instead returns a copy. 
+ modify the original table and instead returns a copy.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to delete from</li>
-       <li><code><em>func</em></code>:  A function that is passed the key and value, and should return
+        <li><span class="parameter">t</span>
+         The table to delete from</li>
+        <li><span class="parameter">func</span>
+         A function that is passed the key and value, and should return
  true if the pair is to be deleted, or false otherwise</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A new table that contains all values for which func(k, v) did not
  return true.
     </ol>
@@ -858,6 +963,8 @@
     <ul>
          <a href="../modules/tablex.html#delete_if">delete_if</a>
     </ul>
+
+
 </dd>
     <dt>
     <a name = "keep_if"></a>
@@ -870,16 +977,20 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to process</li>
-       <li><code><em>func</em></code>:  A function that is passed the key and value, and should return
+        <li><span class="parameter">t</span>
+         The table to process</li>
+        <li><span class="parameter">func</span>
+         A function that is passed the key and value, and should return
  true if the pair is to be kept, or false otherwise</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         The original table
     </ol>
+
+
 
 
 </dd>
@@ -889,18 +1000,20 @@
     </dt>
     <dd>
     This function performs the same operation as keep_if, except that it returns
- a new table and does not modify the original. 
+ a new table and does not modify the original.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to process</li>
-       <li><code><em>func</em></code>:  A function that is passed the key and value, and should return
+        <li><span class="parameter">t</span>
+         The table to process</li>
+        <li><span class="parameter">func</span>
+         A function that is passed the key and value, and should return
  true if the pair is to be kept, or false otherwise</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A new table that contains all values for which func(k, v) returned
  true
     </ol>
@@ -910,6 +1023,8 @@
     <ul>
          <a href="../modules/tablex.html#keep_if">keep_if</a>
     </ul>
+
+
 </dd>
     <dt>
     <a name = "any"></a>
@@ -918,21 +1033,25 @@
     <dd>
     This function passes each key/value pair in the given table to func, and
  will return true if the block ever returns a truthy value.   If func is not
- given, then the implementation will default to function(k, v) return v end &ndash;
+ given, then the implementation will default to function(k, v) return v end -
  i.e. will test the truthiness of the values.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to test</li>
-       <li><code><em>func</em></code>:  A function that receives all key/value pairs</li>
+        <li><span class="parameter">t</span>
+         The table to test</li>
+        <li><span class="parameter">func</span>
+         A function that receives all key/value pairs</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A boolean value which represents whether the given function ever
  returned a truthy value.
     </ol>
+
+
 
 
 </dd>
@@ -944,20 +1063,24 @@
     This function passes each key/value pair in the given table to func, and
  will return true if the block returns a truthy value for all key/value
  pairs.   If func is not given, then the implementation will default to
- function(k, v) return v end &ndash; i.e. will test the truthiness of the values.
+ function(k, v) return v end - i.e. will test the truthiness of the values.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to test</li>
-       <li><code><em>func</em></code>:  A function that receives all key/value pairs</li>
+        <li><span class="parameter">t</span>
+         The table to test</li>
+        <li><span class="parameter">func</span>
+         A function that receives all key/value pairs</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A boolean value which represents whether the given function returns
  a truthy value for all k/v pairs.
     </ol>
+
+
 
 
 </dd>
@@ -968,20 +1091,24 @@
     <dd>
     This function wll pass every key/value pair in the table to the given
  function, and will return the first pair for which the function returns a
- non-falsy value. 
+ non-falsy value.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to search</li>
-       <li><code><em>func</em></code>:  A function that will receive key/value pairs</li>
+        <li><span class="parameter">t</span>
+         The table to search</li>
+        <li><span class="parameter">func</span>
+         A function that will receive key/value pairs</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The first k, v for which func(k, v) returns a non-falsy value, or
  nil if no non-falsy value was returned
     </ol>
+
+
 
 
 </dd>
@@ -991,21 +1118,25 @@
     </dt>
     <dd>
     Removes elements from the given list-like table up to, but not including,
- the first element for which func(k, v) returns a falsy value. 
+ the first element for which func(k, v) returns a falsy value.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to process</li>
-       <li><code><em>func</em></code>:  A function that receives key/value pairs, and returns a single
+        <li><span class="parameter">t</span>
+         The table to process</li>
+        <li><span class="parameter">func</span>
+         A function that receives key/value pairs, and returns a single
  value</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A new list-like table with all elements including and after the
  first element for which func(k, v) returns a falsy value
     </ol>
+
+
 
 
 </dd>
@@ -1020,17 +1151,21 @@
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to group</li>
-       <li><code><em>func</em></code>:  A function that takes an index/value pair and should return a
+        <li><span class="parameter">t</span>
+         The table to group</li>
+        <li><span class="parameter">func</span>
+         A function that takes an index/value pair and should return a
  single value.</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         A table, with keys that are the results of func(i, v), and values
  that are list-like tables containing all values.
     </ol>
+
+
 
 
 </dd>
@@ -1040,22 +1175,26 @@
     </dt>
     <dd>
     This function will find the largest value in a table, comparing using the
- given function.   If not given, a function that performs &ldquo;v1 &lt; v2&rdquo; will be
+ given function.   If not given, a function that performs "v1 < v2" will be
  used instead.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to search</li>
-       <li><code><em>func</em></code>:  The comparison function, receives (key1, val1, key2, val2), and
+        <li><span class="parameter">t</span>
+         The table to search</li>
+        <li><span class="parameter">func</span>
+         The comparison function, receives (key1, val1, key2, val2), and
  should return a boolean</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         max_key, max_val, which are the maximum values found in the input
  table, or nil, nil if the table is empty
     </ol>
+
+
 
 
 </dd>
@@ -1066,21 +1205,25 @@
     <dd>
     This function will pass each key/value pair in a table to a given function,
  and then return two tables: one which contains the key/value pairs for which
- the function returned true, and a table of the ones that returned false. 
+ the function returned true, and a table of the ones that returned false.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to partition</li>
-       <li><code><em>func</em></code>:  The partitioning function &ndash; called with func(k, v), and should
+        <li><span class="parameter">t</span>
+         The table to partition</li>
+        <li><span class="parameter">func</span>
+         The partitioning function - called with func(k, v), and should
  return a boolean</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         Two tables, which contain the {key, value} pairs for which the
  function returned true and false
     </ol>
+
+
 
 
 </dd>
@@ -1092,21 +1235,25 @@
     This function will pass each index/value pair in a list-like table to a
  given function, and then return two tables: one which contains the values
  for which the function returned true, and a table of the ones that returned
- false. 
+ false.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The table to partition</li>
-       <li><code><em>func</em></code>:  The partitioning function &ndash; called with func(i, v), and should
+        <li><span class="parameter">t</span>
+         The table to partition</li>
+        <li><span class="parameter">func</span>
+         The partitioning function - called with func(i, v), and should
  return a boolean</li>
     </ul>
 
-
     <h3>Returns:</h3>
     <ol>
+
         Two tables, which contain the values for which the function returned
  true and false
     </ol>
+
+
 
 
 </dd>
@@ -1117,21 +1264,25 @@
     <dd>
     Given a list-like table, will return a new list-like table that is flattened
  by the given level.   That is to say, for every value that is a list-like
- table, extract it&rsquo;s elements into the new list, to the recursive depth
+ table, extract it's elements into the new list, to the recursive depth
  specified.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The list-like table to flatten</li>
-       <li><code><em>level</em></code>:  The level to flatten to.  Use math.huge to represent &ldquo;flatten
- everything&rdquo;</li>
+        <li><span class="parameter">t</span>
+         The list-like table to flatten</li>
+        <li><span class="parameter">level</span>
+         The level to flatten to.  Use math.huge to represent "flatten
+ everything"</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         A new list-like table that has been flattened.
     </ol>
+
+
 
 
 </dd>
@@ -1141,18 +1292,21 @@
     </dt>
     <dd>
     This function will randomly shuffle the given list-like table in-place, and
- then return the table. 
+ then return the table.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>t</em></code>:  The list-like table to shuffle</li>
+        <li><span class="parameter">t</span>
+         The list-like table to shuffle</li>
     </ul>
-
 
     <h3>Returns:</h3>
     <ol>
+
         The input table, shuffled
     </ol>
+
+
 
 
 </dd>
@@ -1162,13 +1316,15 @@
     </dt>
     <dd>
     Adds all the functions in this module to the specified table.   Note that
- we default to the &lsquo;table&rsquo; table, and we exclude this function itself.
+ we default to the 'table' table, and we exclude this function itself.
 
     <h3>Parameters:</h3>
     <ul>
-       <li><code><em>mod</em></code>:  If given, the module to patch these functions into.  Defaults
+        <li><span class="parameter">mod</span>
+         If given, the module to patch these functions into.  Defaults
  to the table module.</li>
     </ul>
+
 
 
 
@@ -1176,90 +1332,92 @@
 </dd>
 </dl>
     <h2><a name="Tables"></a>Tables</h2>
-    
     <dl class="function">
     <dt>
     <a name = "table_methods"></a>
     <strong>table_methods</strong>
     </dt>
     <dd>
-    This table stores all functions that take a table as their first argument. 
+    This table stores all functions that take a table as their first argument.
  This is particularly useful if you want to set a metatable on a table so
  that you can call functions like: tbl:copy(), as opposed to table.copy(tbl)
 
     <h3>Fields:</h3>
     <ul>
-       <li><code><em>copy</em></code>: 
-</li>
-       <li><code><em>deepcopy</em></code>: 
-</li>
-       <li><code><em>sort</em></code>: 
-</li>
-       <li><code><em>isempty</em></code>: 
-</li>
-       <li><code><em>size</em></code>: 
-</li>
-       <li><code><em>keys</em></code>: 
-</li>
-       <li><code><em>values</em></code>: 
-</li>
-       <li><code><em>clear</em></code>: 
-</li>
-       <li><code><em>update</em></code>: 
-</li>
-       <li><code><em>transpose</em></code>: 
-</li>
-       <li><code><em>compare</em></code>: 
-</li>
-       <li><code><em>comparei</em></code>: 
-</li>
-       <li><code><em>compare_unordered</em></code>: 
-</li>
-       <li><code><em>find</em></code>: 
-</li>
-       <li><code><em>rfind</em></code>: 
-</li>
-       <li><code><em>map</em></code>: 
-</li>
-       <li><code><em>mapi</em></code>: 
-</li>
-       <li><code><em>transform</em></code>: 
-</li>
-       <li><code><em>reduce</em></code>: 
-</li>
-       <li><code><em>zip</em></code>: 
-</li>
-       <li><code><em>normalize_slice</em></code>: 
-</li>
-       <li><code><em>sub</em></code>: 
-</li>
-       <li><code><em>delete_if</em></code>: 
-</li>
-       <li><code><em>reject</em></code>: 
-</li>
-       <li><code><em>keep_if</em></code>: 
-</li>
-       <li><code><em>select</em></code>: 
-</li>
-       <li><code><em>any</em></code>: 
-</li>
-       <li><code><em>all</em></code>: 
-</li>
-       <li><code><em>detect</em></code>: 
-</li>
-       <li><code><em>drop_while</em></code>: 
-</li>
-       <li><code><em>group_by</em></code>: 
-</li>
-       <li><code><em>max</em></code>: 
-</li>
-       <li><code><em>partition</em></code>: 
-</li>
-       <li><code><em>partitioni</em></code>: 
-</li>
-       <li><code><em>flatten</em></code>: 
-</li>
+        <li><span class="parameter">copy</span>
+        </li>
+        <li><span class="parameter">deepcopy</span>
+        </li>
+        <li><span class="parameter">sort</span>
+        </li>
+        <li><span class="parameter">isempty</span>
+        </li>
+        <li><span class="parameter">size</span>
+        </li>
+        <li><span class="parameter">keys</span>
+        </li>
+        <li><span class="parameter">values</span>
+        </li>
+        <li><span class="parameter">clear</span>
+        </li>
+        <li><span class="parameter">update</span>
+        </li>
+        <li><span class="parameter">transpose</span>
+        </li>
+        <li><span class="parameter">compare</span>
+        </li>
+        <li><span class="parameter">comparei</span>
+        </li>
+        <li><span class="parameter">compare_unordered</span>
+        </li>
+        <li><span class="parameter">find</span>
+        </li>
+        <li><span class="parameter">rfind</span>
+        </li>
+        <li><span class="parameter">map</span>
+        </li>
+        <li><span class="parameter">mapi</span>
+        </li>
+        <li><span class="parameter">transform</span>
+        </li>
+        <li><span class="parameter">reduce</span>
+        </li>
+        <li><span class="parameter">zip</span>
+        </li>
+        <li><span class="parameter">normalize_slice</span>
+        </li>
+        <li><span class="parameter">sub</span>
+        </li>
+        <li><span class="parameter">delete_if</span>
+        </li>
+        <li><span class="parameter">reject</span>
+        </li>
+        <li><span class="parameter">keep_if</span>
+        </li>
+        <li><span class="parameter">select</span>
+        </li>
+        <li><span class="parameter">any</span>
+        </li>
+        <li><span class="parameter">all</span>
+        </li>
+        <li><span class="parameter">detect</span>
+        </li>
+        <li><span class="parameter">drop_while</span>
+        </li>
+        <li><span class="parameter">group_by</span>
+        </li>
+        <li><span class="parameter">max</span>
+        </li>
+        <li><span class="parameter">partition</span>
+        </li>
+        <li><span class="parameter">partitioni</span>
+        </li>
+        <li><span class="parameter">flatten</span>
+        </li>
+        <li><span class="parameter">shuffle</span>
+        </li>
     </ul>
+
 
 
 
@@ -1271,7 +1429,7 @@
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.2</a></i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.3.12</a></i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
