@@ -1,7 +1,7 @@
 .PHONY: doc
 
 doc:
-	@ldoc.lua src
+	@ldoc -d docs src
 
 test:
 	@busted
