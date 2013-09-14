@@ -11,6 +11,7 @@ local type = type
 local pairs, ipairs = pairs, ipairs
 local string = string
 local error = error
+local tbl_concat = table.concat
 
 local print = print
 local tostring = tostring
@@ -483,8 +484,16 @@ function zfill(s, width)
 end
 
 
+-------------------------------------------------------------------------------
+-- Join a table together with the given string.
+-- @param s The seperator to use
+-- @param t The table to join
+function join(s, t)
+    return tbl_concat(t, s)
+end
+
+
 -- TODO:
---  join
 --  expandtabs
 --  splitlines
 --  split
