@@ -65,6 +65,9 @@ const = {
 -- A constant indicating whether the current execution platform is Windows.
 is_windows = const.dirsep == '\\'
 
+
+-------------------------------------------------------------------------------
+--- A constant indicating whether the current execution platform is Minecraft.
 is_minecraft = false
 if _type(os.version) == "function" then
     if string.sub(os.version(), 1, 7) == "CraftOS" or
@@ -76,9 +79,9 @@ end
 
 -------------------------------------------------------------------------------
 -- Returns the current execution platform.
--- Values can include "windows", "darwin", "linux", or whatever the lower-case
--- version of `uname` returns.  "unknown" is returned if the output from
--- `uname` is empty (e.g. in case of an error).
+-- Values can include "windows", "darwin", "linux", "minecraft", or whatever
+-- the lower-case version of `uname` returns.  "unknown" is returned if the
+-- output from `uname` is empty (e.g. in case of an error).
 -- @return A string indicating the current execution platform
 function platform()
     if is_windows then
@@ -116,8 +119,9 @@ local _other_mapping = {
 
 -------------------------------------------------------------------------------
 -- Returns the current processor architecture.
--- The string returned will be one of 'x86', 'x64', 'ia64', 'unknown', or
--- whatever `uname -p` returns.
+-- The string returned will be one of 'x86', 'x64', 'ia64', 'unknown', or, on
+-- Minecraft only, 'turtle' or 'computer'.  If no OS can be detected, then we
+-- attempt to call `uname -p` and return what it does.
 -- @return A string indicating the processor architecture
 function architecture()
     local arch
